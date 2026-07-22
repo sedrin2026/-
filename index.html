@@ -23,7 +23,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 8px;
+      padding: 10px;
       position: relative;
     }
 
@@ -39,13 +39,13 @@
     }
 
     .calculator {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 28px;
-      padding: 12px;
+      padding: 14px;
       width: 100%;
-      max-width: 360px;
+      max-width: 390px; /* 少し大きくしました */
       box-shadow: 0 25px 50px rgba(0, 30, 50, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.9);
       border: 2px solid rgba(255, 255, 255, 0.8);
       position: relative;
@@ -56,10 +56,10 @@
 
     .header-title {
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: bold;
       color: #004d61;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -69,7 +69,7 @@
     
     .header-title .name-stylish {
       font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', 'Segoe Print', cursive;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: bold;
       letter-spacing: 2px;
       margin: 0 4px;
@@ -88,26 +88,26 @@
       background-size: cover;
       border: 2px solid rgba(255, 255, 255, 0.9);
       border-radius: 14px;
-      padding: 6px 10px;
-      margin-bottom: 6px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
       box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.8), 0 4px 15px rgba(0, 131, 176, 0.25);
     }
 
     .datetime {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       color: #004d61;
       font-weight: bold;
       text-align: right;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
     }
 
     .formula-screen {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #b78103;
       text-align: right;
-      height: 16px;
-      line-height: 16px;
+      height: 18px;
+      line-height: 18px;
       font-weight: bold;
       overflow: hidden;
       white-space: nowrap;
@@ -115,12 +115,12 @@
 
     .screen {
       width: 100%;
-      height: 32px;
+      height: 36px;
       background: transparent;
       border: none;
       outline: none;
       text-align: right;
-      font-size: 1.7rem;
+      font-size: 1.9rem;
       font-weight: bold;
       color: #00334e;
       text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
@@ -132,11 +132,11 @@
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 10px;
-      padding: 4px;
-      font-size: 0.75rem;
+      padding: 6px;
+      font-size: 0.8rem;
       font-weight: bold;
       cursor: pointer;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       box-shadow: 0 3px 8px rgba(255, 94, 98, 0.4);
     }
 
@@ -144,26 +144,26 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .discount-wrapper.open {
-      max-height: 90px;
+      max-height: 100px;
     }
 
     .discount-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
+      gap: 5px;
     }
 
     .btn-discount {
       background-color: rgba(255, 255, 255, 0.9);
       color: #e64a19;
       border: 1px solid rgba(255, 112, 67, 0.5);
-      padding: 4px 0;
+      padding: 5px 0;
       border-radius: 6px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: bold;
       cursor: pointer;
     }
@@ -171,14 +171,14 @@
     .keypad {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 5px;
+      gap: 6px;
     }
 
     button.btn {
-      height: 40px;
+      height: 44px; /* ボタンを少し大きく押しやすくしました */
       border-radius: 10px;
       border: none;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: bold;
       cursor: pointer;
       display: flex;
@@ -192,7 +192,7 @@
       border: 1px solid rgba(255, 255, 255, 0.8);
       box-shadow: 0 2px 5px rgba(183, 28, 28, 0.3);
       flex-direction: column;
-      padding: 1px 0;
+      padding: 2px 0;
     }
 
     .btn-shisa .shisa-icon { font-size: 0.8rem; line-height: 1; }
@@ -225,10 +225,17 @@
       box-shadow: 0 2px 6px rgba(247, 151, 30, 0.4);
     }
 
+    .percent-btn {
+      background: linear-gradient(135deg, #8e2de2, #4a00e0);
+      color: #ffffff !important;
+      font-size: 1.1rem !important;
+      box-shadow: 0 2px 6px rgba(142, 45, 226, 0.4);
+    }
+
     .history-btn, .memo-btn {
       background-color: rgba(224, 242, 241, 0.95);
       color: #00695c;
-      font-size: 0.7rem !important;
+      font-size: 0.75rem !important;
       font-weight: bold;
     }
 
@@ -239,10 +246,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(12px);
       border-radius: 28px;
-      padding: 12px;
+      padding: 14px;
       z-index: 10;
       box-sizing: border-box;
       flex-direction: column;
@@ -254,34 +261,34 @@
       align-items: center;
       font-weight: bold;
       color: #00695c;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       border-bottom: 2px solid #80cbc4;
-      padding-bottom: 4px;
-      font-size: 0.85rem;
+      padding-bottom: 6px;
+      font-size: 0.9rem;
     }
 
     .modal-close {
       background: #ff416c;
       color: white;
       border: none;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 6px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
     }
 
     .modal-body { overflow-y: auto; flex-grow: 1; }
     .history-list { list-style: none; }
-    .history-item { padding: 6px 0; border-bottom: 1px dashed #b2dfdb; text-align: right; color: #263238; font-size: 0.8rem; }
+    .history-item { padding: 8px 0; border-bottom: 1px dashed #b2dfdb; text-align: right; color: #263238; font-size: 0.85rem; }
 
-    .memo-form { display: flex; gap: 4px; margin-bottom: 6px; width: 100%; }
-    .memo-input-name { flex: 2; min-width: 0; padding: 4px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.75rem; outline: none; }
-    .memo-input-price { flex: 1.2; min-width: 0; padding: 4px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.75rem; outline: none; text-align: right; }
-    .memo-add-btn { background: #0083b0; color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; flex-shrink: 0; }
-    .memo-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-    .memo-table th { border-bottom: 2px solid #b2dfdb; padding: 3px; color: #00695c; text-align: left; }
-    .memo-table td { border-bottom: 1px solid #e0f2f1; padding: 4px 3px; color: #37474f; }
-    .memo-del-btn { color: #e53935; cursor: pointer; border: none; background: none; font-weight: bold; }
-    .memo-total { margin-top: 6px; padding-top: 6px; border-top: 2px solid #00695c; font-weight: bold; color: #004d40; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; width: 100%; }
+    .memo-form { display: flex; gap: 6px; margin-bottom: 8px; width: 100%; }
+    .memo-input-name { flex: 2; min-width: 0; padding: 6px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.8rem; outline: none; }
+    .memo-input-price { flex: 1.2; min-width: 0; padding: 6px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.8rem; outline: none; text-align: right; }
+    .memo-add-btn { background: #0083b0; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; white-space: nowrap; flex-shrink: 0; }
+    .memo-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .memo-table th { border-bottom: 2px solid #b2dfdb; padding: 4px; color: #00695c; text-align: left; }
+    .memo-table td { border-bottom: 1px solid #e0f2f1; padding: 6px 4px; color: #37474f; }
+    .memo-del-btn { color: #e53935; cursor: pointer; border: none; background: none; font-weight: bold; font-size: 0.9rem; }
+    .memo-total { margin-top: 8px; padding-top: 8px; border-top: 2px solid #00695c; font-weight: bold; color: #004d40; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; width: 100%; }
   </style>
 </head>
 <body>
@@ -316,29 +323,31 @@
       <button class="btn btn-shisa" onclick="memoryRecall()"><span class="shisa-icon">🌺</span><span class="shisa-text">mr</span></button>
 
       <button class="btn clear" onclick="clearScreen()">C</button>
+      <button class="btn percent-btn" onclick="appendPercent()">%</button>
       <button class="btn memo-btn" onclick="toggleMemo()">📝 メモ</button>
       <button class="btn history-btn" onclick="toggleHistory()">📜 履歴</button>
-      <button class="btn op" onclick="appendOp('÷')">÷</button>
 
       <button class="btn num" onclick="appendNum('7')">7</button>
       <button class="btn num" onclick="appendNum('8')">8</button>
       <button class="btn num" onclick="appendNum('9')">9</button>
-      <button class="btn op" onclick="appendOp('×')">×</button>
+      <button class="btn op" onclick="appendOp('÷')">÷</button>
 
       <button class="btn num" onclick="appendNum('4')">4</button>
       <button class="btn num" onclick="appendNum('5')">5</button>
       <button class="btn num" onclick="appendNum('6')">6</button>
-      <button class="btn op" onclick="appendOp('-')">-</button>
+      <button class="btn op" onclick="appendOp('×')">×</button>
 
       <button class="btn num" onclick="appendNum('1')">1</button>
       <button class="btn num" onclick="appendNum('2')">2</button>
       <button class="btn num" onclick="appendNum('3')">3</button>
-      <button class="btn op" onclick="appendOp('+')">+</button>
+      <button class="btn op" onclick="appendOp('-')">-</button>
 
       <button class="btn num" onclick="appendNum('0')">0</button>
       <button class="btn num" onclick="appendNum('00')">00</button>
+      <button class="btn op" onclick="appendOp('+')">+</button>
       <button class="btn clear" onclick="deleteChar()">⌫</button>
-      <button class="btn equal" onclick="calculate()">=</button>
+
+      <button class="btn equal" onclick="calculate()" style="grid-column: span 4;">=</button>
     </div>
 
     <div class="modal" id="historyModal">
@@ -369,7 +378,7 @@
             <tr>
               <th>品名</th>
               <th style="text-align:right;">金額</th>
-              <th style="width:20px; text-align:center;"></th>
+              <th style="width:24px; text-align:center;"></th>
             </tr>
           </thead>
           <tbody id="memoList"></tbody>
@@ -433,6 +442,14 @@
       }
       currentInput = "0";
       isNewCalculation = false;
+      updateDisplay();
+    }
+
+    function appendPercent() {
+      let val = parseFloat(currentInput);
+      if (isNaN(val)) return;
+      val = val / 100;
+      currentInput = String(val);
       updateDisplay();
     }
 
@@ -562,7 +579,7 @@
       const totalDisplay = document.getElementById('memoTotalDisplay');
 
       if (memoList.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#999; padding:8px;">メモはありません</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#999; padding:10px;">メモはありません</td></tr>';
         totalDisplay.innerText = "¥0";
         return;
       }
