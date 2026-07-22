@@ -56,7 +56,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 32px;
-      padding: 18px;
+      padding: 16px;
       width: 100%;
       max-width: 380px;
       max-height: 98vh;
@@ -67,7 +67,7 @@
       flex-direction: column;
       justify-content: space-between;
       z-index: 1;
-      overflow: hidden; /* 薄いハイビスカスのハミ出しを防止 */
+      overflow: hidden;
     }
 
     /* 電卓本体に大きくうっすら配置する実写ハイビスカス */
@@ -80,17 +80,18 @@
       height: 60%;
       background: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?q=80&w=800&auto=format&fit=crop') no-repeat center center;
       background-size: contain;
-      opacity: 0.18; /* うっすら見せるための透明度 */
-      pointer-events: none; /* ボタン操作を邪魔しない */
+      opacity: 0.18;
+      pointer-events: none;
       z-index: 0;
     }
 
-    /* ヘッダー＆ハッキリ見えるリアルゴールドYUKINOロゴ */
+    /* ヘッダー＆クッキリゴールドYUKINOロゴ（見切れ防止調整済） */
     .header-title {
       text-align: center;
       font-size: 1.1rem;
       font-weight: bold;
       color: #004d61;
+      margin-top: 2px;
       margin-bottom: 4px;
       letter-spacing: 1px;
       display: flex;
@@ -102,28 +103,30 @@
     
     .header-title .name-stylish {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: bold;
-      letter-spacing: 1px;
-      margin: 0 4px;
-      line-height: 1;
-      background: linear-gradient(180deg, #ffd700 0%, #b8860b 45%, #d4af37 70%, #8b6508 100%);
+      letter-spacing: 2px;
+      margin: 0 6px;
+      line-height: 1.2;
+      padding-top: 4px;
+      padding-bottom: 2px;
+      background: linear-gradient(180deg, #fff2a3 0%, #ffd700 30%, #da10b 70%, #8b6508 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0px 2px 3px rgba(80, 50, 0, 0.6))
-              drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.8));
+      filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.8))
+              drop-shadow(0px 0px 2px rgba(255, 255, 255, 1));
+      display: inline-block;
     }
 
-    /* 明るくなったディスプレイ背景 */
+    /* ディスプレイ背景 */
     .display-container {
-      /* 明るめのエメラルドグリーンリゾート写真に変更 */
       background: linear-gradient(rgba(0, 80, 100, 0.15), rgba(0, 40, 60, 0.35)), 
                   url('https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=800&auto=format&fit=crop') no-repeat center center;
       background-size: cover;
       border: 2px solid rgba(0, 229, 255, 0.7);
       border-radius: 16px;
-      padding: 8px 12px;
-      margin-bottom: 8px;
+      padding: 6px 12px;
+      margin-bottom: 6px;
       box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 180, 219, 0.4);
       position: relative;
       overflow: hidden;
@@ -131,7 +134,7 @@
     }
 
     .datetime {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #e0f7fa;
       font-weight: bold;
       text-align: right;
@@ -140,30 +143,43 @@
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
     }
 
+    /* 途中式を表示するエリア */
+    .formula-screen {
+      font-size: 0.85rem;
+      color: #ffd54f;
+      text-align: right;
+      height: 18px;
+      line-height: 18px;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    }
+
+    /* メイン数値画面 */
     .screen {
       width: 100%;
-      height: 48px;
+      height: 36px;
       background: transparent;
       border: none;
       outline: none;
       text-align: right;
-      font-size: 2.2rem;
+      font-size: 1.9rem;
       font-weight: bold;
       color: #ffffff;
       word-wrap: break-word;
-      /* 明るい背景でも文字がはっきり読める影 */
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
     }
 
-    /* 割引スライドメニュー (ハイビスカス・サンセット調) */
+    /* 割引スライドメニュー */
     .discount-toggle-btn {
       width: 100%;
       background: linear-gradient(135deg, #ff5e62, #ff9966);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 12px;
-      padding: 6px;
-      font-size: 0.85rem;
+      padding: 5px;
+      font-size: 0.8rem;
       font-weight: bold;
       cursor: pointer;
       margin-bottom: 6px;
@@ -176,7 +192,6 @@
 
     .discount-toggle-btn:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 3px rgba(255, 94, 98, 0.4);
     }
 
     .discount-wrapper {
@@ -228,16 +243,52 @@
     }
 
     button.btn {
-      height: 46px;
+      height: 44px;
       border-radius: 12px;
       border: none;
       font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* 数字ボタン (半透明ピュアホワイト・ガラス風) */
+    /* シーサー・メモリーボタン */
+    .btn-shisa {
+      background: linear-gradient(135deg, #d84315, #ff7043);
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 3px 6px rgba(183, 28, 28, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2px 0;
+    }
+
+    .btn-shisa .shisa-icon {
+      font-size: 1rem;
+      line-height: 1;
+      margin-bottom: 1px;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+    }
+
+    .btn-shisa .shisa-text {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .btn-shisa:active {
+      transform: translateY(2px);
+    }
+
+    /* 数字ボタン */
     .num {
       background-color: rgba(255, 255, 255, 0.88);
       color: #1a365d;
@@ -246,77 +297,62 @@
     }
     .num:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       background-color: rgba(240, 248, 255, 0.95);
     }
 
-    /* 演算子ボタン (ディープ・ケラマブルー) */
+    /* 演算子ボタン */
     .op {
       background: linear-gradient(135deg, #0083b0, #00b4db);
       color: #ffffff;
-      font-size: 1.6rem !important;
+      font-size: 1.5rem !important;
       border: 1px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 3px 8px rgba(0, 131, 176, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
     .op:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 3px rgba(0, 131, 176, 0.4);
     }
 
-    /* イコールボタン (ハイビスカス・レッド) */
+    /* イコールボタン */
     .equal {
       background: linear-gradient(135deg, #ff416c, #ff4b2b);
       color: #ffffff;
-      font-size: 1.8rem !important;
+      font-size: 1.7rem !important;
       border: 1px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 3px 8px rgba(255, 65, 108, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
     .equal:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 3px rgba(255, 65, 108, 0.4);
     }
 
-    /* メモリーボタン */
-    .mem {
-      background-color: rgba(224, 242, 241, 0.88);
-      color: #00695c;
-      font-size: 0.9rem !important;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .mem:active {
-      transform: translateY(2px);
-    }
-
-    /* クリア・削除ボタン (サンセット・オレンジ) */
+    /* クリア・削除ボタン */
     .clear {
       background: linear-gradient(135deg, #f7971e, #ffd200);
       color: #ffffff;
-      font-size: 1.3rem !important;
+      font-size: 1.2rem !important;
       border: 1px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 3px 8px rgba(247, 151, 30, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5);
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
     .clear:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 3px rgba(247, 151, 30, 0.4);
     }
 
-    /* 履歴ボタン */
-    .history-btn {
-      background-color: rgba(224, 242, 241, 0.88);
+    /* 履歴＆メモボタン */
+    .history-btn, .memo-btn {
+      background-color: rgba(224, 242, 241, 0.95);
       color: #00695c;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      font-size: 0.8rem !important;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      font-size: 0.75rem !important;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     }
-    .history-btn:active {
+    .history-btn:active, .memo-btn:active {
       transform: translateY(2px);
     }
 
-    /* 履歴モーダル */
+    /* モーダル */
     .modal {
       display: none;
       position: absolute;
@@ -324,10 +360,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
       border-radius: 32px;
-      padding: 18px;
+      padding: 16px;
       z-index: 10;
       box-sizing: border-box;
       flex-direction: column;
@@ -339,24 +375,30 @@
       align-items: center;
       font-weight: bold;
       color: #00695c;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       border-bottom: 2px solid #80cbc4;
       padding-bottom: 6px;
+      font-size: 0.95rem;
     }
 
     .modal-close {
       background: #ff416c;
       color: white;
       border: none;
-      padding: 4px 12px;
-      border-radius: 10px;
+      padding: 4px 10px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .modal-body {
+      overflow-y: auto;
+      flex-grow: 1;
     }
 
     .history-list {
       list-style: none;
-      overflow-y: auto;
-      flex-grow: 1;
     }
 
     .history-item {
@@ -364,6 +406,81 @@
       border-bottom: 1px dashed #b2dfdb;
       text-align: right;
       color: #263238;
+      font-size: 0.85rem;
+    }
+
+    /* メモ機能スタイル */
+    .memo-form {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .memo-input-name {
+      flex: 2;
+      padding: 6px;
+      border: 1px solid #b2dfdb;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    .memo-input-price {
+      flex: 1.5;
+      padding: 6px;
+      border: 1px solid #b2dfdb;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      outline: none;
+      text-align: right;
+    }
+
+    .memo-add-btn {
+      background: #0083b0;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .memo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .memo-table th {
+      border-bottom: 2px solid #b2dfdb;
+      padding: 4px;
+      color: #00695c;
+      text-align: left;
+    }
+
+    .memo-table td {
+      border-bottom: 1px solid #e0f2f1;
+      padding: 6px 4px;
+      color: #37474f;
+    }
+
+    .memo-del-btn {
+      color: #e53935;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      background: none;
+    }
+
+    .memo-total {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 2px solid #00695c;
+      font-weight: bold;
+      color: #004d40;
+      display: flex;
+      justify-content: space-between;
       font-size: 0.9rem;
     }
   </style>
@@ -375,6 +492,7 @@
 
     <div class="display-container">
       <div class="datetime" id="datetime">----/--/-- (-) --:--:--</div>
+      <div class="formula-screen" id="formulaScreen"></div>
       <input type="text" class="screen" id="screen" value="0" readonly>
     </div>
 
@@ -394,42 +512,53 @@
     </div>
 
     <div class="keypad">
-      <!-- メモリーキー -->
-      <button class="btn mem" onclick="memoryClear()">mc</button>
-      <button class="btn mem" onclick="memoryAdd()">m+</button>
-      <button class="btn mem" onclick="memorySub()">m-</button>
-      <button class="btn mem" onclick="memoryRecall()">mr</button>
+      <!-- シーサー・メモリーキー -->
+      <button class="btn btn-shisa" onclick="memoryClear()">
+        <span class="shisa-icon">🦁</span>
+        <span class="shisa-text">mc</span>
+      </button>
+      <button class="btn btn-shisa" onclick="memoryAdd()">
+        <span class="shisa-icon">🗿</span>
+        <span class="shisa-text">m+</span>
+      </button>
+      <button class="btn btn-shisa" onclick="memorySub()">
+        <span class="shisa-icon">🦁</span>
+        <span class="shisa-text">m-</span>
+      </button>
+      <button class="btn btn-shisa" onclick="memoryRecall()">
+        <span class="shisa-icon">🗿</span>
+        <span class="shisa-text">mr</span>
+      </button>
 
       <!-- 機能キー & 演算子 -->
       <button class="btn clear" onclick="clearScreen()">C</button>
+      <button class="btn memo-btn" onclick="toggleMemo()">📝 メモ</button>
       <button class="btn history-btn" onclick="toggleHistory()">📜 履歴</button>
       <button class="btn op" onclick="appendOp('÷')">÷</button>
-      <button class="btn op" onclick="appendOp('×')">×</button>
 
-      <!-- 数字キー 7 8 9 - -->
+      <!-- 数字キー 7 8 9 × -->
       <button class="btn num" onclick="appendNum('7')">7</button>
       <button class="btn num" onclick="appendNum('8')">8</button>
       <button class="btn num" onclick="appendNum('9')">9</button>
-      <button class="btn op" onclick="appendOp('-')">-</button>
+      <button class="btn op" onclick="appendOp('×')">×</button>
 
-      <!-- 数字キー 4 5 6 + -->
+      <!-- 数字キー 4 5 6 - -->
       <button class="btn num" onclick="appendNum('4')">4</button>
       <button class="btn num" onclick="appendNum('5')">5</button>
       <button class="btn num" onclick="appendNum('6')">6</button>
-      <button class="btn op" onclick="appendOp('+')">+</button>
+      <button class="btn op" onclick="appendOp('-')">-</button>
 
-      <!-- 数字キー 1 2 3 = -->
+      <!-- 数字キー 1 2 3 + -->
       <button class="btn num" onclick="appendNum('1')">1</button>
       <button class="btn num" onclick="appendNum('2')">2</button>
       <button class="btn num" onclick="appendNum('3')">3</button>
-      <button class="btn equal" onclick="calculate()">=</button>
+      <button class="btn op" onclick="appendOp('+')">+</button>
 
-      <!-- 最下段 0 00 . % DEL -->
+      <!-- 最下段 0 00 . = -->
       <button class="btn num" onclick="appendNum('0')">0</button>
       <button class="btn num" onclick="appendNum('00')">00</button>
-      <button class="btn num" onclick="appendNum('.')">.</button>
-      <button class="btn op" onclick="appendPercent()">%</button>
       <button class="btn clear" onclick="deleteChar()">⌫</button>
+      <button class="btn equal" onclick="calculate()">=</button>
     </div>
 
     <!-- 履歴モーダル -->
@@ -438,10 +567,44 @@
         <span>📜 計算履歴 (最新10件)</span>
         <button class="modal-close" onclick="toggleHistory()">閉じる</button>
       </div>
-      <ul class="history-list" id="historyList">
-        <li class="history-item">History is empty</li>
-      </ul>
+      <div class="modal-body">
+        <ul class="history-list" id="historyList">
+          <li class="history-item">History is empty</li>
+        </ul>
+      </div>
     </div>
+
+    <!-- お買い物メモモーダル -->
+    <div class="modal" id="memoModal">
+      <div class="modal-header">
+        <span>📝 お買い物メモ (最大10件)</span>
+        <button class="modal-close" onclick="toggleMemo()">閉じる</button>
+      </div>
+      <div class="memo-form">
+        <input type="text" id="memoName" class="memo-input-name" placeholder="品名 (例: お土産)" maxlength="12">
+        <input type="number" id="memoPrice" class="memo-input-price" placeholder="金額 (円)">
+        <button class="memo-add-btn" onclick="addMemoItem()">追加</button>
+      </div>
+      <div class="modal-body">
+        <table class="memo-table">
+          <thead>
+            <tr>
+              <th>品名</th>
+              <th style="text-align:right;">金額</th>
+              <th style="width:30px; text-align:center;"></th>
+            </tr>
+          </thead>
+          <tbody id="memoList">
+            <!-- 動的追加 -->
+          </tbody>
+        </table>
+      </div>
+      <div class="memo-total">
+        <span>合計金額:</span>
+        <span id="memoTotalDisplay">¥0</span>
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -468,11 +631,14 @@
     let isNewCalculation = false;
     let memoryValue = 0;
     let history = [];
+    let memoList = [];
 
     const screen = document.getElementById('screen');
+    const formulaScreen = document.getElementById('formulaScreen');
 
-    function updateScreen(val) {
-      screen.value = val;
+    function updateDisplay() {
+      screen.value = currentInput;
+      formulaScreen.innerText = expression;
     }
 
     function appendNum(num) {
@@ -482,13 +648,18 @@
       } else {
         currentInput += num;
       }
-      updateScreen(currentInput);
+      updateDisplay();
     }
 
     function appendOp(op) {
-      if (isNewCalculation) isNewCalculation = false;
-      expression += currentInput + " " + op + " ";
+      if (expression.endsWith("= ")) {
+        expression = currentInput + " " + op + " ";
+      } else {
+        expression += currentInput + " " + op + " ";
+      }
       currentInput = "0";
+      isNewCalculation = false;
+      updateDisplay();
     }
 
     function deleteChar() {
@@ -498,20 +669,13 @@
       } else {
         currentInput = "0";
       }
-      updateScreen(currentInput);
-    }
-
-    function appendPercent() {
-      let val = parseFloat(currentInput);
-      if (isNaN(val)) return;
-      currentInput = String(val / 100);
-      updateScreen(currentInput);
+      updateDisplay();
     }
 
     function clearScreen() {
       currentInput = "0";
       expression = "";
-      updateScreen("0");
+      updateDisplay();
     }
 
     function calculate() {
@@ -522,19 +686,22 @@
       try {
         let result = eval(evalExpr);
         result = Math.round(result * 100000000) / 100000000;
+        
+        expression = fullExpr + " =";
         addHistory(`${fullExpr} = ${result}`);
+        
         currentInput = String(result);
-        expression = "";
         isNewCalculation = true;
-        updateScreen(currentInput);
+        updateDisplay();
       } catch (e) {
-        updateScreen("Error");
-        currentInput = "0";
+        currentInput = "Error";
         expression = "";
+        updateDisplay();
+        currentInput = "0";
       }
     }
 
-    // 割引機能
+    // 割引機能（計算結果からそのまま継続入力可能）
     function toggleDiscount() {
       const wrapper = document.getElementById('discountWrapper');
       wrapper.classList.toggle('open');
@@ -544,23 +711,23 @@
       let val = parseFloat(currentInput);
       if (isNaN(val) || val === 0) return;
 
-      let discountedCalc = val * (1 - rate);
-      discountedCalc = Math.round(discountedCalc);
+      let discountedCalc = Math.round(val * (1 - rate));
       let percentText = Math.round(rate * 100) + "%OFF";
 
       addHistory(`${val} の ${percentText} = ${discountedCalc}`);
+      
       currentInput = String(discountedCalc);
-      isNewCalculation = true;
-      updateScreen(currentInput);
+      isNewCalculation = false; // そのまま次の演算子・数字を続けられるようにセット
+      updateDisplay();
     }
 
     // メモリー機能
     function memoryClear() { memoryValue = 0; }
     function memoryAdd() { memoryValue += parseFloat(currentInput) || 0; isNewCalculation = true; }
     function memorySub() { memoryValue -= parseFloat(currentInput) || 0; isNewCalculation = true; }
-    function memoryRecall() { currentInput = String(memoryValue); updateScreen(currentInput); isNewCalculation = true; }
+    function memoryRecall() { currentInput = String(memoryValue); isNewCalculation = false; updateDisplay(); }
 
-    // 履歴管理
+    // 履歴機能
     function addHistory(item) {
       history.unshift(item);
       if (history.length > 10) history.pop();
@@ -580,6 +747,72 @@
       const modal = document.getElementById('historyModal');
       modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
+
+    // メモ機能
+    function toggleMemo() {
+      const modal = document.getElementById('memoModal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+
+      if (modal.style.display === 'flex' && currentInput !== "0") {
+        document.getElementById('memoPrice').value = currentInput;
+      }
+    }
+
+    function addMemoItem() {
+      const nameInput = document.getElementById('memoName');
+      const priceInput = document.getElementById('memoPrice');
+
+      const name = nameInput.value.trim() || "品名なし";
+      const price = parseInt(priceInput.value, 10);
+
+      if (isNaN(price) || price < 0) {
+        alert("金額を正しく入力してください");
+        return;
+      }
+
+      if (memoList.length >= 10) {
+        alert("メモは最大10件まで保存できます");
+        return;
+      }
+
+      memoList.push({ name, price });
+      nameInput.value = "";
+      priceInput.value = "";
+
+      renderMemo();
+    }
+
+    function deleteMemoItem(index) {
+      memoList.splice(index, 1);
+      renderMemo();
+    }
+
+    function renderMemo() {
+      const tbody = document.getElementById('memoList');
+      const totalDisplay = document.getElementById('memoTotalDisplay');
+
+      if (memoList.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#999; padding:10px;">メモはありません</td></tr>';
+        totalDisplay.innerText = "¥0";
+        return;
+      }
+
+      let total = 0;
+      tbody.innerHTML = memoList.map((item, i) => {
+        total += item.price;
+        return `
+          <tr>
+            <td>${item.name}</td>
+            <td style="text-align:right;">¥${item.price.toLocaleString()}</td>
+            <td style="text-align:center;"><button class="memo-del-btn" onclick="deleteMemoItem(${i})">✕</button></td>
+          </tr>
+        `;
+      }).join('');
+
+      totalDisplay.innerText = `¥${total.toLocaleString()}`;
+    }
+
+    renderMemo();
   </script>
 </body>
 </html>
