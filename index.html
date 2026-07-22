@@ -27,7 +27,7 @@
       padding: 20px;
       width: 100%;
       max-width: 380px;
-      box-shadow: 0 10px 25px rgba(255, 182, 193, 0.5);
+      box-shadow: 0 12px 30px rgba(255, 182, 193, 0.6);
       border: 4px solid #ffb6c1;
       position: relative;
     }
@@ -41,18 +41,19 @@
       text-shadow: 1px 1px 2px #fff0f5;
     }
 
+    /* 濃い蛍光水色のディスプレイ */
     .display-container {
-      background-color: #ffe6f2; /* 薄い蛍光ピンク */
-      border: 2px solid #ffb6c1;
+      background-color: #00f0ff; /* 濃い蛍光水色 */
+      border: 3px solid #00c8e6;
       border-radius: 18px;
       padding: 12px 15px;
-      margin-bottom: 15px;
-      box-shadow: inset 0 2px 5px rgba(255, 105, 180, 0.15);
+      margin-bottom: 12px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(0, 240, 255, 0.6);
     }
 
     .datetime {
       font-size: 0.85rem;
-      color: #d87093;
+      color: #005577; /* 視認性の良い濃い色 */
       font-weight: bold;
       text-align: right;
       margin-bottom: 4px;
@@ -67,89 +68,150 @@
       text-align: right;
       font-size: 2.2rem;
       font-weight: bold;
-      color: #2c2c2c; /* 濃くてくっきり見やすい文字色 */
+      color: #111111; /* くっきり見える漆黒 */
       word-wrap: break-word;
     }
 
-    .discount-title {
-      font-size: 0.8rem;
-      color: #ff69b4;
+    /* 割引スライドメニュー */
+    .discount-toggle-btn {
+      width: 100%;
+      background: #fff0f5;
+      color: #ff1493;
+      border: 2px solid #ffb6c1;
+      border-radius: 14px;
+      padding: 8px;
+      font-size: 0.9rem;
       font-weight: bold;
-      margin-bottom: 6px;
-      text-align: center;
+      cursor: pointer;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 0 #ffb6c1;
+      transition: all 0.1s;
+    }
+
+    .discount-toggle-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #ffb6c1;
+    }
+
+    .discount-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      margin-bottom: 8px;
+    }
+
+    .discount-wrapper.open {
+      max-height: 120px;
     }
 
     .discount-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
-      margin-bottom: 12px;
+      padding: 4px 0;
     }
 
     .btn-discount {
-      background-color: #fff0f5;
+      background-color: #ffffff;
       color: #ff1493;
       border: 1.5px solid #ffb6c1;
       padding: 6px 0;
-      border-radius: 12px;
+      border-radius: 10px;
       font-size: 0.8rem;
       font-weight: bold;
       cursor: pointer;
+      box-shadow: 0 3px 0 #ffb6c1;
       transition: all 0.1s;
     }
 
     .btn-discount:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #ffb6c1;
       background-color: #ffb6c1;
       color: #fff;
     }
 
+    /* キーパッド & ぷっくり立体ボタン */
     .keypad {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
 
     button.btn {
-      height: 52px;
-      border-radius: 16px;
+      height: 48px;
+      border-radius: 14px;
       border: none;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      transition: transform 0.05s, background-color 0.1s;
+      transition: all 0.1s;
+      user-select: none;
     }
 
-    button.btn:active {
-      transform: scale(0.95);
-    }
-
+    /* ボタン共通の立体影スタイル */
     .num {
       background-color: #ffffff;
-      color: #555555;
+      color: #444444;
       border: 1px solid #ffe4e1;
+      box-shadow: 0 4px 0 #ffd1dc;
+    }
+    .num:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #ffd1dc;
     }
 
     .op {
       background-color: #ffb6c1;
       color: #ffffff;
+      box-shadow: 0 4px 0 #ff99aa;
+    }
+    .op:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #ff99aa;
+    }
+
+    .mem {
+      background-color: #fff0f5;
+      color: #ff69b4;
+      font-size: 0.95rem !important;
+      box-shadow: 0 4px 0 #ffc0cb;
+    }
+    .mem:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #ffc0cb;
     }
 
     .clear {
       background-color: #ff6b81;
       color: #ffffff;
+      box-shadow: 0 4px 0 #e0526b;
+    }
+    .clear:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #e0526b;
     }
 
     .equal {
       background-color: #ff1493;
       color: #ffffff;
+      box-shadow: 0 4px 0 #c7006e;
+    }
+    .equal:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #c7006e;
     }
 
     .history-btn {
       background-color: #fff0f5;
       color: #ff69b4;
-      border: 1.5px solid #ffb6c1;
-      grid-column: span 2;
+      border: 1px solid #ffb6c1;
+      font-size: 0.85rem !important;
+      box-shadow: 0 4px 0 #ffb6c1;
+    }
+    .history-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #ffb6c1;
     }
 
     /* 履歴ポップアップ */
@@ -160,7 +222,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       border-radius: 24px;
       padding: 20px;
       z-index: 10;
@@ -213,42 +275,58 @@
       <input type="text" class="screen" id="screen" value="0" readonly>
     </div>
 
-    <div class="discount-title">💖 割引・OFFボタン 💖</div>
-    <div class="discount-grid">
-      <button class="btn-discount" onclick="applyDiscount(0.1)">1割/10%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.2)">2割/20%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.3)">3割/30%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.4)">4割/40%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.5)">5割/50%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.6)">6割/60%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.7)">7割/70%</button>
-      <button class="btn-discount" onclick="applyDiscount(0.8)">8割/80%</button>
+    <!-- 割引スライドメニュー -->
+    <button class="discount-toggle-btn" onclick="toggleDiscount()">💖 割引計算メニュー (1〜8割 / OFF) ▼</button>
+    <div class="discount-wrapper" id="discountWrapper">
+      <div class="discount-grid">
+        <button class="btn-discount" onclick="applyDiscount(0.1)">1割/10%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.2)">2割/20%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.3)">3割/30%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.4)">4割/40%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.5)">5割/50%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.6)">6割/60%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.7)">7割/70%</button>
+        <button class="btn-discount" onclick="applyDiscount(0.8)">8割/80%</button>
+      </div>
     </div>
 
     <div class="keypad">
-      <button class="btn clear" onclick="clearScreen()">C</button>
-      <button class="btn history-btn" onclick="toggleHistory()">📜 履歴 (10件)</button>
-      <button class="btn op" onclick="appendOp('÷')">÷</button>
+      <!-- メモリーキー -->
+      <button class="btn mem" onclick="memoryClear()">mc</button>
+      <button class="btn mem" onclick="memoryAdd()">m+</button>
+      <button class="btn mem" onclick="memorySub()">m-</button>
+      <button class="btn mem" onclick="memoryRecall()">mr</button>
 
+      <!-- 機能キー & 演算子 -->
+      <button class="btn clear" onclick="clearScreen()">C</button>
+      <button class="btn history-btn" onclick="toggleHistory()">📜 履歴</button>
+      <button class="btn op" onclick="appendOp('÷')">÷</button>
+      <button class="btn op" onclick="appendOp('×')">×</button>
+
+      <!-- 数字キー 7 8 9 - -->
       <button class="btn num" onclick="appendNum('7')">7</button>
       <button class="btn num" onclick="appendNum('8')">8</button>
       <button class="btn num" onclick="appendNum('9')">9</button>
-      <button class="btn op" onclick="appendOp('×')">×</button>
+      <button class="btn op" onclick="appendOp('-')">-</button>
 
+      <!-- 数字キー 4 5 6 + -->
       <button class="btn num" onclick="appendNum('4')">4</button>
       <button class="btn num" onclick="appendNum('5')">5</button>
       <button class="btn num" onclick="appendNum('6')">6</button>
-      <button class="btn op" onclick="appendOp('-')">-</button>
+      <button class="btn op" onclick="appendOp('+')">+</button>
 
+      <!-- 数字キー 1 2 3 = -->
       <button class="btn num" onclick="appendNum('1')">1</button>
       <button class="btn num" onclick="appendNum('2')">2</button>
       <button class="btn num" onclick="appendNum('3')">3</button>
-      <button class="btn op" onclick="appendOp('+')">+</button>
+      <button class="btn equal" onclick="calculate()">=</button>
 
+      <!-- 最下段 0 00 . % DEL -->
       <button class="btn num" onclick="appendNum('0')">0</button>
       <button class="btn num" onclick="appendNum('00')">00</button>
       <button class="btn num" onclick="appendNum('.')">.</button>
-      <button class="btn equal" onclick="calculate()">=</button>
+      <button class="btn op" onclick="appendPercent()">%</button>
+      <button class="btn clear" onclick="deleteChar()">⌫</button>
     </div>
 
     <!-- 履歴モーダル -->
@@ -281,10 +359,11 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 電卓機能
+    // 電卓状態
     let currentInput = "0";
     let expression = "";
     let isNewCalculation = false;
+    let memoryValue = 0;
     let history = [];
 
     const screen = document.getElementById('screen');
@@ -309,6 +388,23 @@
       currentInput = "0";
     }
 
+    function deleteChar() {
+      if (isNewCalculation) return;
+      if (currentInput.length > 1) {
+        currentInput = currentInput.slice(0, -1);
+      } else {
+        currentInput = "0";
+      }
+      updateScreen(currentInput);
+    }
+
+    function appendPercent() {
+      let val = parseFloat(currentInput);
+      if (isNaN(val)) return;
+      currentInput = String(val / 100);
+      updateScreen(currentInput);
+    }
+
     function clearScreen() {
       currentInput = "0";
       expression = "";
@@ -322,7 +418,7 @@
 
       try {
         let result = eval(evalExpr);
-        result = Math.round(result * 100000000) / 100000000; // 精度調整
+        result = Math.round(result * 100000000) / 100000000;
         addHistory(`${fullExpr} = ${result}`);
         currentInput = String(result);
         expression = "";
@@ -335,13 +431,18 @@
       }
     }
 
-    // 割引・OFF計算
+    // 割引機能
+    function toggleDiscount() {
+      const wrapper = document.getElementById('discountWrapper');
+      wrapper.classList.toggle('open');
+    }
+
     function applyDiscount(rate) {
       let val = parseFloat(currentInput);
       if (isNaN(val) || val === 0) return;
 
       let discounted = val * (1 - rate);
-      discounted = Math.round(discounted); // 四捨五入
+      discounted = Math.round(discounted);
       let percentText = Math.round(rate * 100) + "%OFF";
 
       addHistory(`${val} の ${percentText} = ${discounted}`);
@@ -349,6 +450,12 @@
       isNewCalculation = true;
       updateScreen(currentInput);
     }
+
+    // メモリー機能
+    function memoryClear() { memoryValue = 0; }
+    function memoryAdd() { memoryValue += parseFloat(currentInput) || 0; isNewCalculation = true; }
+    function memorySub() { memoryValue -= parseFloat(currentInput) || 0; isNewCalculation = true; }
+    function memoryRecall() { currentInput = String(memoryValue); updateScreen(currentInput); isNewCalculation = true; }
 
     // 履歴管理
     function addHistory(item) {
