@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🌺🌴YUKINO🌴🌺 のリアル沖縄リゾート電卓</title>
-  <!-- 優雅でクラシカルな筆記体フォント（Great Vibes）の読み込み -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -19,7 +15,6 @@
       -webkit-user-select: none;
     }
 
-    /* 画面全体を固定してスライド・スクロールを完全に防ぐ */
     html, body {
       width: 100%;
       height: 100%;
@@ -28,7 +23,6 @@
       touch-action: manipulation;
     }
 
-    /* 全体の背景：沖縄の美しい海岸・砂浜の写真 */
     body {
       background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
       background-size: cover;
@@ -39,7 +33,6 @@
       position: relative;
     }
 
-    /* 南国の空気感を演出するフィルター */
     body::before {
       content: "";
       position: absolute;
@@ -70,7 +63,6 @@
       overflow: hidden;
     }
 
-    /* 電卓本体に大きくうっすら配置する実写ハイビスカス */
     .calculator::after {
       content: "";
       position: absolute;
@@ -85,7 +77,6 @@
       z-index: 0;
     }
 
-    /* ヘッダー＆クッキリゴールドYUKINOロゴ */
     .header-title {
       text-align: center;
       font-size: 1.1rem;
@@ -102,23 +93,22 @@
     }
     
     .header-title .name-stylish {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.6rem;
+      font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', 'Segoe Print', cursive;
+      font-size: 2.5rem;
       font-weight: bold;
       letter-spacing: 2px;
       margin: 0 6px;
       line-height: 1.2;
-      padding-top: 4px;
+      padding-top: 2px;
       padding-bottom: 2px;
-      background: linear-gradient(180deg, #fff2a3 0%, #ffd700 30%, #da10b 70%, #8b6508 100%);
+      background: linear-gradient(180deg, #fff3b0 0%, #ffd700 40%, #ff8c00 80%, #b8860b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.8))
+      filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.7))
               drop-shadow(0px 0px 2px rgba(255, 255, 255, 1));
       display: inline-block;
     }
 
-    /* ディスプレイ背景（透き通る明るいリゾートガラス風） */
     .display-container {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(180, 235, 255, 0.35)), 
                   url('https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=800&auto=format&fit=crop') no-repeat center center;
@@ -143,7 +133,6 @@
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
     }
 
-    /* 途中式を表示するエリア */
     .formula-screen {
       font-size: 0.85rem;
       color: #b78103;
@@ -156,7 +145,6 @@
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
     }
 
-    /* メイン数値画面（明るい背景でもクッキリ映える文字＆強力な白シャドウ） */
     .screen {
       width: 100%;
       height: 36px;
@@ -171,7 +159,6 @@
       text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.6);
     }
 
-    /* 割引スライドメニュー */
     .discount-toggle-btn {
       width: 100%;
       background: linear-gradient(135deg, #ff5e62, #ff9966);
@@ -233,7 +220,6 @@
       color: #fff;
     }
 
-    /* キーパッド & ガラス質感ボタン */
     .keypad {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -255,7 +241,6 @@
       justify-content: center;
     }
 
-    /* ハイビスカス・メモリーボタン */
     .btn-shisa {
       background: linear-gradient(135deg, #d84315, #ff7043);
       color: #ffffff !important;
@@ -288,7 +273,6 @@
       transform: translateY(2px);
     }
 
-    /* 数字ボタン */
     .num {
       background-color: rgba(255, 255, 255, 0.88);
       color: #1a365d;
@@ -300,7 +284,6 @@
       background-color: rgba(240, 248, 255, 0.95);
     }
 
-    /* 演算子ボタン */
     .op {
       background: linear-gradient(135deg, #0083b0, #00b4db);
       color: #ffffff;
@@ -313,7 +296,6 @@
       transform: translateY(2px);
     }
 
-    /* イコールボタン */
     .equal {
       background: linear-gradient(135deg, #ff416c, #ff4b2b);
       color: #ffffff;
@@ -326,7 +308,6 @@
       transform: translateY(2px);
     }
 
-    /* クリア・削除ボタン */
     .clear {
       background: linear-gradient(135deg, #f7971e, #ffd200);
       color: #ffffff;
@@ -339,7 +320,6 @@
       transform: translateY(2px);
     }
 
-    /* 履歴＆メモボタン */
     .history-btn, .memo-btn {
       background-color: rgba(224, 242, 241, 0.95);
       color: #00695c;
@@ -352,7 +332,6 @@
       transform: translateY(2px);
     }
 
-    /* モーダル */
     .modal {
       display: none;
       position: absolute;
@@ -409,7 +388,6 @@
       font-size: 0.85rem;
     }
 
-    /* メモ機能スタイル */
     .memo-form {
       display: flex;
       gap: 4px;
@@ -489,334 +467,3 @@
     }
   </style>
 </head>
-<body>
-
-  <div class="calculator">
-    <div class="header-title">🌺🌴<span class="name-stylish">Yukino</span>🌴🌺</div>
-
-    <div class="display-container">
-      <div class="datetime" id="datetime">----/--/-- (-) --:--:--</div>
-      <div class="formula-screen" id="formulaScreen"></div>
-      <input type="text" class="screen" id="screen" value="0" readonly>
-    </div>
-
-    <!-- 割引スライドメニュー -->
-    <button class="discount-toggle-btn" onclick="toggleDiscount()">🌺 リゾート割引メニュー (1〜8割 / OFF) ▼</button>
-    <div class="discount-wrapper" id="discountWrapper">
-      <div class="discount-grid">
-        <button class="btn-discount" onclick="applyDiscount(0.1)">1割/10%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.2)">2割/20%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.3)">3割/30%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.4)">4割/40%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.5)">5割/50%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.6)">6割/60%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.7)">7割/70%</button>
-        <button class="btn-discount" onclick="applyDiscount(0.8)">8割/80%</button>
-      </div>
-    </div>
-
-    <div class="keypad">
-      <!-- ハイビスカス・メモリーキー -->
-      <button class="btn btn-shisa" onclick="memoryClear()">
-        <span class="shisa-icon">🌺</span>
-        <span class="shisa-text">mc</span>
-      </button>
-      <button class="btn btn-shisa" onclick="memoryAdd()">
-        <span class="shisa-icon">🌺</span>
-        <span class="shisa-text">m+</span>
-      </button>
-      <button class="btn btn-shisa" onclick="memorySub()">
-        <span class="shisa-icon">🌺</span>
-        <span class="shisa-text">m-</span>
-      </button>
-      <button class="btn btn-shisa" onclick="memoryRecall()">
-        <span class="shisa-icon">🌺</span>
-        <span class="shisa-text">mr</span>
-      </button>
-
-      <!-- 機能キー & 演算子 -->
-      <button class="btn clear" onclick="clearScreen()">C</button>
-      <button class="btn memo-btn" onclick="toggleMemo()">📝 メモ</button>
-      <button class="btn history-btn" onclick="toggleHistory()">📜 履歴</button>
-      <button class="btn op" onclick="appendOp('÷')">÷</button>
-
-      <!-- 数字キー 7 8 9 × -->
-      <button class="btn num" onclick="appendNum('7')">7</button>
-      <button class="btn num" onclick="appendNum('8')">8</button>
-      <button class="btn num" onclick="appendNum('9')">9</button>
-      <button class="btn op" onclick="appendOp('×')">×</button>
-
-      <!-- 数字キー 4 5 6 - -->
-      <button class="btn num" onclick="appendNum('4')">4</button>
-      <button class="btn num" onclick="appendNum('5')">5</button>
-      <button class="btn num" onclick="appendNum('6')">6</button>
-      <button class="btn op" onclick="appendOp('-')">-</button>
-
-      <!-- 数字キー 1 2 3 + -->
-      <button class="btn num" onclick="appendNum('1')">1</button>
-      <button class="btn num" onclick="appendNum('2')">2</button>
-      <button class="btn num" onclick="appendNum('3')">3</button>
-      <button class="btn op" onclick="appendOp('+')">+</button>
-
-      <!-- 最下段 0 00 . = -->
-      <button class="btn num" onclick="appendNum('0')">0</button>
-      <button class="btn num" onclick="appendNum('00')">00</button>
-      <button class="btn clear" onclick="deleteChar()">⌫</button>
-      <button class="btn equal" onclick="calculate()">=</button>
-    </div>
-
-    <!-- 履歴モーダル -->
-    <div class="modal" id="historyModal">
-      <div class="modal-header">
-        <span>📜 計算履歴 (最新10件)</span>
-        <button class="modal-close" onclick="toggleHistory()">閉じる</button>
-      </div>
-      <div class="modal-body">
-        <ul class="history-list" id="historyList">
-          <li class="history-item">History is empty</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- お買い物メモモーダル -->
-    <div class="modal" id="memoModal">
-      <div class="modal-header">
-        <span>📝 お買い物メモ (最大10件)</span>
-        <button class="modal-close" onclick="toggleMemo()">閉じる</button>
-      </div>
-      <div class="memo-form">
-        <input type="text" id="memoName" class="memo-input-name" placeholder="品名 (例: お土産)" maxlength="12">
-        <input type="number" id="memoPrice" class="memo-input-price" placeholder="金額 (円)">
-        <button class="memo-add-btn" onclick="addMemoItem()">追加</button>
-      </div>
-      <div class="modal-body">
-        <table class="memo-table">
-          <thead>
-            <tr>
-              <th>品名</th>
-              <th style="text-align:right;">金額</th>
-              <th style="width:25px; text-align:center;"></th>
-            </tr>
-          </thead>
-          <tbody id="memoList">
-            <!-- 動的追加 -->
-          </tbody>
-        </table>
-      </div>
-      <div class="memo-total">
-        <span>合計金額:</span>
-        <span id="memoTotalDisplay">¥0</span>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    // 時計機能
-    function updateClock() {
-      const now = new Date();
-      const days = ['日', '月', '火', '水', '木', '金', '土'];
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const date = String(now.getDate()).padStart(2, '0');
-      const day = days[now.getDay()];
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-
-      document.getElementById('datetime').innerText = `${year}/${month}/${date} (${day}) ${hours}:${minutes}:${seconds}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // 電卓状態
-    let currentInput = "0";
-    let expression = "";
-    let isNewCalculation = false;
-    let memoryValue = 0;
-    let history = [];
-    let memoList = [];
-
-    const screen = document.getElementById('screen');
-    const formulaScreen = document.getElementById('formulaScreen');
-
-    function updateDisplay() {
-      screen.value = currentInput;
-      formulaScreen.innerText = expression;
-    }
-
-    function appendNum(num) {
-      if (currentInput === "0" || isNewCalculation) {
-        currentInput = num;
-        isNewCalculation = false;
-      } else {
-        currentInput += num;
-      }
-      updateDisplay();
-    }
-
-    function appendOp(op) {
-      if (expression.endsWith("= ")) {
-        expression = currentInput + " " + op + " ";
-      } else {
-        expression += currentInput + " " + op + " ";
-      }
-      currentInput = "0";
-      isNewCalculation = false;
-      updateDisplay();
-    }
-
-    function deleteChar() {
-      if (isNewCalculation) return;
-      if (currentInput.length > 1) {
-        currentInput = currentInput.slice(0, -1);
-      } else {
-        currentInput = "0";
-      }
-      updateDisplay();
-    }
-
-    function clearScreen() {
-      currentInput = "0";
-      expression = "";
-      updateDisplay();
-    }
-
-    function calculate() {
-      if (!expression && !currentInput) return;
-      let fullExpr = expression + currentInput;
-      let evalExpr = fullExpr.replace(/×/g, '*').replace(/÷/g, '/');
-
-      try {
-        let result = eval(evalExpr);
-        result = Math.round(result * 100000000) / 100000000;
-        
-        expression = fullExpr + " =";
-        addHistory(`${fullExpr} = ${result}`);
-        
-        currentInput = String(result);
-        isNewCalculation = true;
-        updateDisplay();
-      } catch (e) {
-        currentInput = "Error";
-        expression = "";
-        updateDisplay();
-        currentInput = "0";
-      }
-    }
-
-    // 割引機能
-    function toggleDiscount() {
-      const wrapper = document.getElementById('discountWrapper');
-      wrapper.classList.toggle('open');
-    }
-
-    function applyDiscount(rate) {
-      let val = parseFloat(currentInput);
-      if (isNaN(val) || val === 0) return;
-
-      let discountedCalc = Math.round(val * (1 - rate));
-      let percentText = Math.round(rate * 100) + "%OFF";
-
-      addHistory(`${val} の ${percentText} = ${discountedCalc}`);
-      
-      currentInput = String(discountedCalc);
-      isNewCalculation = false;
-      updateDisplay();
-    }
-
-    // メモリー機能
-    function memoryClear() { memoryValue = 0; }
-    function memoryAdd() { memoryValue += parseFloat(currentInput) || 0; isNewCalculation = true; }
-    function memorySub() { memoryValue -= parseFloat(currentInput) || 0; isNewCalculation = true; }
-    function memoryRecall() { currentInput = String(memoryValue); isNewCalculation = false; updateDisplay(); }
-
-    // 履歴機能
-    function addHistory(item) {
-      history.unshift(item);
-      if (history.length > 10) history.pop();
-      renderHistory();
-    }
-
-    function renderHistory() {
-      const list = document.getElementById('historyList');
-      if (history.length === 0) {
-        list.innerHTML = '<li class="history-item">History is empty</li>';
-        return;
-      }
-      list.innerHTML = history.map(h => `<li class="history-item">${h}</li>`).join('');
-    }
-
-    function toggleHistory() {
-      const modal = document.getElementById('historyModal');
-      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    // メモ機能
-    function toggleMemo() {
-      const modal = document.getElementById('memoModal');
-      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-
-      if (modal.style.display === 'flex' && currentInput !== "0") {
-        document.getElementById('memoPrice').value = currentInput;
-      }
-    }
-
-    function addMemoItem() {
-      const nameInput = document.getElementById('memoName');
-      const priceInput = document.getElementById('memoPrice');
-
-      const name = nameInput.value.trim() || "品名なし";
-      const price = parseInt(priceInput.value, 10);
-
-      if (isNaN(price) || price < 0) {
-        alert("金額を正しく入力してください");
-        return;
-      }
-
-      if (memoList.length >= 10) {
-        alert("メモは最大10件まで保存できます");
-        return;
-      }
-
-      memoList.push({ name, price });
-      nameInput.value = "";
-      priceInput.value = "";
-
-      renderMemo();
-    }
-
-    function deleteMemoItem(index) {
-      memoList.splice(index, 1);
-      renderMemo();
-    }
-
-    function renderMemo() {
-      const tbody = document.getElementById('memoList');
-      const totalDisplay = document.getElementById('memoTotalDisplay');
-
-      if (memoList.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#999; padding:10px;">メモはありません</td></tr>';
-        totalDisplay.innerText = "¥0";
-        return;
-      }
-
-      let total = 0;
-      tbody.innerHTML = memoList.map((item, i) => {
-        total += item.price;
-        return `
-          <tr>
-            <td>${item.name}</td>
-            <td style="text-align:right;">¥${item.price.toLocaleString()}</td>
-            <td style="text-align:center;"><button class="memo-del-btn" onclick="deleteMemoItem(${i})">✕</button></td>
-          </tr>
-        `;
-      }).join('');
-
-      totalDisplay.innerText = `¥${total.toLocaleString()}`;
-    }
-
-    renderMemo();
-  </script>
-</body>
-</html>
