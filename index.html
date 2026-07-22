@@ -4,130 +4,165 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🎀🧸YUKINO🧸🎀 の電卓</title>
+  <!-- おしゃれなフォント（Pacifico）の読み込み -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* 画面全体を固定してスライド・スクロールを完全に防ぐ */
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: fixed;
+      touch-action: manipulation;
     }
 
     body {
-      background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
+      background: linear-gradient(135deg, #2b1a24, #4a2838, #2a1520);
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 10px;
+      padding: 12px;
     }
 
     .calculator {
-      background: #ffffff;
+      background: #1f1519;
       border-radius: 28px;
-      padding: 20px;
+      padding: 16px;
       width: 100%;
       max-width: 380px;
-      box-shadow: 0 12px 30px rgba(255, 182, 193, 0.6);
-      border: 4px solid #ffb6c1;
+      max-height: 98vh;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      border: 2px solid #8c586e;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
+    /* ヘッダー＆ゴールドに輝くYUKINOロゴ */
     .header-title {
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      color: #ff69b4;
-      margin-bottom: 10px;
-      text-shadow: 1px 1px 2px #fff0f5;
+      color: #e0a9bc;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    .header-title .name-stylish {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.6rem;
+      letter-spacing: 1.5px;
+      margin: 0 4px;
+      /* 黄金のゴールドグラデーション */
+      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      /* 立体的な輝きの影 */
+      filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8));
     }
 
-    /* 濃い蛍光水色のディスプレイ */
+    /* ラグジュアリーなディスプレイ */
     .display-container {
-      background-color: #00f0ff; /* 濃い蛍光水色 */
-      border: 3px solid #00c8e6;
-      border-radius: 18px;
-      padding: 12px 15px;
-      margin-bottom: 12px;
-      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(0, 240, 255, 0.6);
+      background-color: #0f1c1f;
+      border: 2px solid #5a737a;
+      border-radius: 16px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 15px rgba(95, 158, 160, 0.2);
     }
 
     .datetime {
-      font-size: 0.85rem;
-      color: #005577; /* 視認性の良い濃い色 */
+      font-size: 0.75rem;
+      color: #7da1a6;
       font-weight: bold;
       text-align: right;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
     }
 
     .screen {
       width: 100%;
-      height: 55px;
+      height: 48px;
       background: transparent;
       border: none;
       outline: none;
       text-align: right;
       font-size: 2.2rem;
       font-weight: bold;
-      color: #111111; /* くっきり見える漆黒 */
+      color: #e6f7ff;
       word-wrap: break-word;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
     }
 
-    /* 割引スライドメニュー */
+    /* 割引スライドメニュー (大人のローズ調) */
     .discount-toggle-btn {
       width: 100%;
-      background: #fff0f5;
-      color: #ff1493;
-      border: 2px solid #ffb6c1;
-      border-radius: 14px;
-      padding: 8px;
-      font-size: 0.9rem;
+      background: #36222b;
+      color: #e0a9bc;
+      border: 1px solid #704557;
+      border-radius: 12px;
+      padding: 6px;
+      font-size: 0.85rem;
       font-weight: bold;
       cursor: pointer;
-      margin-bottom: 8px;
-      box-shadow: 0 4px 0 #ffb6c1;
+      margin-bottom: 6px;
+      box-shadow: 0 3px 0 #1f141a;
       transition: all 0.1s;
     }
 
     .discount-toggle-btn:active {
       transform: translateY(2px);
-      box-shadow: 0 2px 0 #ffb6c1;
+      box-shadow: 0 1px 0 #1f141a;
     }
 
     .discount-wrapper {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      margin-bottom: 8px;
+      transition: max-height 0.25s ease-out;
+      margin-bottom: 4px;
     }
 
     .discount-wrapper.open {
-      max-height: 120px;
+      max-height: 100px;
     }
 
     .discount-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      padding: 4px 0;
+      gap: 5px;
+      padding: 2px 0;
     }
 
     .btn-discount {
-      background-color: #ffffff;
-      color: #ff1493;
-      border: 1.5px solid #ffb6c1;
-      padding: 6px 0;
-      border-radius: 10px;
-      font-size: 0.8rem;
+      background-color: #2b1b22;
+      color: #dfb2c3;
+      border: 1px solid #633f4e;
+      padding: 5px 0;
+      border-radius: 8px;
+      font-size: 0.75rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 3px 0 #ffb6c1;
+      box-shadow: 0 2px 0 #150d11;
       transition: all 0.1s;
     }
 
     .btn-discount:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #ffb6c1;
-      background-color: #ffb6c1;
+      box-shadow: 0 0 0 #150d11;
+      background-color: #5c3a47;
       color: #fff;
     }
 
@@ -135,86 +170,96 @@
     .keypad {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      gap: 6px;
     }
 
     button.btn {
-      height: 48px;
-      border-radius: 14px;
+      height: 46px;
+      border-radius: 12px;
       border: none;
       font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.1s;
-      user-select: none;
     }
 
-    /* ボタン共通の立体影スタイル */
+    /* 数字ボタン (エレガントなチャコールグレー＆微光沢) */
     .num {
-      background-color: #ffffff;
-      color: #444444;
-      border: 1px solid #ffe4e1;
-      box-shadow: 0 4px 0 #ffd1dc;
+      background-color: #2e242a;
+      color: #f0e6eb;
+      border: 1px solid #473741;
+      box-shadow: 0 3px 0 #171115;
     }
     .num:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #ffd1dc;
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #171115;
     }
 
+    /* 演算子ボタン (ローズモーブ) */
     .op {
-      background-color: #ffb6c1;
+      background-color: #6e4355;
       color: #ffffff;
-      box-shadow: 0 4px 0 #ff99aa;
+      font-size: 1.6rem !important;
+      border: 1px solid #8c586e;
+      box-shadow: 0 3px 0 #422632;
     }
     .op:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #ff99aa;
-    }
-
-    .mem {
-      background-color: #fff0f5;
-      color: #ff69b4;
-      font-size: 0.95rem !important;
-      box-shadow: 0 4px 0 #ffc0cb;
-    }
-    .mem:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #ffc0cb;
-    }
-
-    .clear {
-      background-color: #ff6b81;
-      color: #ffffff;
-      box-shadow: 0 4px 0 #e0526b;
-    }
-    .clear:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #e0526b;
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #422632;
     }
 
     .equal {
-      background-color: #ff1493;
+      background: linear-gradient(135deg, #a85575, #853b5a);
       color: #ffffff;
-      box-shadow: 0 4px 0 #c7006e;
+      font-size: 1.8rem !important;
+      border: 1px solid #c47696;
+      box-shadow: 0 3px 0 #522237;
     }
     .equal:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #c7006e;
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #522237;
     }
 
+    /* メモリーボタン */
+    .mem {
+      background-color: #3b2832;
+      color: #d19ab0;
+      font-size: 0.9rem !important;
+      border: 1px solid #573c49;
+      box-shadow: 0 3px 0 #21161c;
+    }
+    .mem:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #21161c;
+    }
+
+    /* クリア・削除ボタン (落ち着いたワインレッド) */
+    .clear {
+      background-color: #8c3b4a;
+      color: #ffffff;
+      font-size: 1.3rem !important;
+      border: 1px solid #ad5666;
+      box-shadow: 0 3px 0 #4f1e27;
+    }
+    .clear:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #4f1e27;
+    }
+
+    /* 履歴ボタン */
     .history-btn {
-      background-color: #fff0f5;
-      color: #ff69b4;
-      border: 1px solid #ffb6c1;
-      font-size: 0.85rem !important;
-      box-shadow: 0 4px 0 #ffb6c1;
+      background-color: #3b2832;
+      color: #d19ab0;
+      border: 1px solid #573c49;
+      font-size: 0.8rem !important;
+      box-shadow: 0 3px 0 #21161c;
     }
     .history-btn:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #ffb6c1;
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #21161c;
     }
 
-    /* 履歴ポップアップ */
+    /* 履歴モーダル */
     .modal {
       display: none;
       position: absolute;
@@ -222,9 +267,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(31, 21, 25, 0.98);
       border-radius: 24px;
-      padding: 20px;
+      padding: 16px;
       z-index: 10;
       box-sizing: border-box;
       flex-direction: column;
@@ -235,18 +280,18 @@
       justify-content: space-between;
       align-items: center;
       font-weight: bold;
-      color: #ff69b4;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ffe4e1;
-      padding-bottom: 8px;
+      color: #e0a9bc;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #4a2838;
+      padding-bottom: 6px;
     }
 
     .modal-close {
-      background: #ffb6c1;
+      background: #6e4355;
       color: white;
       border: none;
       padding: 4px 12px;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
     }
 
@@ -258,17 +303,17 @@
 
     .history-item {
       padding: 8px 0;
-      border-bottom: 1px dashed #ffd1dc;
+      border-bottom: 1px dashed #4a2838;
       text-align: right;
-      color: #444;
-      font-size: 0.95rem;
+      color: #d1b5c3;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
   <div class="calculator">
-    <div class="header-title">🎀🧸YUKINO🧸🎀</div>
+    <div class="header-title">🎀🧸<span class="name-stylish">YUKINO</span>🧸🎀</div>
 
     <div class="display-container">
       <div class="datetime" id="datetime">----/--/-- (-) --:--:--</div>
