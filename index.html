@@ -3,561 +3,373 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Special Calculator</title>
-  
-  <!-- PWA設定 ＆ アイコン指定 -->
-  <meta name="theme-color" id="theme-color-meta" content="#f7d6e0">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="専用電卓">
-  
-  <!-- 簡易Manifest (PWA用 ＆ SVGリボンアイコン付き) -->
-  <link rel="manifest" id="my-manifest">
-
+  <title>🎀🧸YUKINO🧸🎀 の電卓</title>
   <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #f7d6e0 0%, #f2b5d4 50%, #d8e2dc 100%);
-      --card-bg: rgba(255, 255, 255, 0.90);
-      --text-main: #4a4e69;
-      --text-sub: #9a8c98;
-      --btn-bg: #ffffff;
-      --btn-active: #ffe5ec;
-      --btn-op-bg: #eae4f2;
-      --btn-op-text: #7251b5;
-      --primary-pink: #f4acb7;
-      --highlight-pink: #ff6884;
-      --shadow: rgba(0, 0, 0, 0.08);
-      --display-bg: #ffffff;
-    }
-
-    body.dark-mode {
-      --bg-gradient: linear-gradient(135deg, #2b2d42 0%, #1a1a2e 100%);
-      --card-bg: rgba(35, 37, 55, 0.92);
-      --text-main: #edf2f4;
-      --text-sub: #8d99ae;
-      --btn-bg: #3d405b;
-      --btn-active: #50547b;
-      --btn-op-bg: #5e503f;
-      --btn-op-text: #f4a261;
-      --primary-pink: #e76f51;
-      --highlight-pink: #ff8a65;
-      --shadow: rgba(0, 0, 0, 0.3);
-      --display-bg: #181925;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
     }
 
     body {
-      margin: 0;
-      padding: 0;
+      background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
-      background: var(--bg-gradient);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-      -webkit-user-select: none;
-      transition: background 0.3s ease;
-      overflow: hidden;
+      padding: 10px;
     }
 
-    /* 起動時のふわっとアニメーション用オーバーレイ */
-    .splash-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: var(--bg-gradient);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      animation: fadeOutSplash 1.8s ease forwards;
-      pointer-events: none;
-    }
-    .splash-heart {
-      font-size: 3.5rem;
-      animation: pulseHeart 1s ease infinite alternate;
-    }
-    .splash-text {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      letter-spacing: 1px;
-    }
-    @keyframes pulseHeart {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.15); }
-    }
-    @keyframes fadeOutSplash {
-      0% { opacity: 1; }
-      70% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-
-    /* 落ちる花びら・ハート演出 */
-    .petal {
-      position: fixed;
-      top: -20px;
-      font-size: 1.2rem;
-      z-index: 998;
-      pointer-events: none;
-      animation: fallPetal linear forwards;
-    }
-    @keyframes fallPetal {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-    }
-
-    .calc-container {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      width: 100%;
-      max-width: 350px;
+    .calculator {
+      background: #ffffff;
+      border-radius: 28px;
       padding: 20px;
-      border-radius: 32px;
-      box-shadow: 0 12px 35px var(--shadow);
-      box-sizing: border-box;
-      margin: 15px;
-      transition: background-color 0.3s ease;
-    }
-
-    /* ヘッダー */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      padding: 0 4px;
-    }
-
-    .title-box {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text-main);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .controls {
-      display: flex;
-      gap: 6px;
-    }
-
-    .icon-btn {
-      background: var(--btn-bg);
-      border: none;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 2px 5px var(--shadow);
-    }
-
-    /* ディスプレイ */
-    .display-box {
-      background: var(--display-bg);
-      border-radius: 20px;
-      padding: 10px 16px;
-      margin-bottom: 12px;
-      box-shadow: inset 0 2px 6px var(--shadow);
-    }
-
-    .sub-display {
-      height: 18px;
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      text-align: right;
-      font-weight: 600;
-    }
-
-    .main-display-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    #display {
       width: 100%;
-      border: none;
-      background: transparent;
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--text-main);
+      max-width: 380px;
+      box-shadow: 0 10px 25px rgba(255, 182, 193, 0.5);
+      border: 4px solid #ffb6c1;
+      position: relative;
+    }
+
+    .header-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ff69b4;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px #fff0f5;
+    }
+
+    .display-container {
+      background-color: #ffe6f2; /* 薄い蛍光ピンク */
+      border: 2px solid #ffb6c1;
+      border-radius: 18px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      box-shadow: inset 0 2px 5px rgba(255, 105, 180, 0.15);
+    }
+
+    .datetime {
+      font-size: 0.85rem;
+      color: #d87093;
+      font-weight: bold;
       text-align: right;
+      margin-bottom: 4px;
+    }
+
+    .screen {
+      width: 100%;
+      height: 55px;
+      background: transparent;
+      border: none;
       outline: none;
+      text-align: right;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #2c2c2c; /* 濃くてくっきり見やすい文字色 */
+      word-wrap: break-word;
     }
 
-    .copy-btn {
-      background: var(--btn-active);
-      border: none;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      color: var(--text-main);
-      padding: 4px 8px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    /* セクションタイトル */
-    .section-title {
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      font-weight: 700;
-      margin-bottom: 5px;
-      padding-left: 4px;
-    }
-
-    /* 割引・値引きスクロールバー */
-    .discount-scroll {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      margin-bottom: 12px;
-      scrollbar-width: none;
-    }
-    .discount-scroll::-webkit-scrollbar { display: none; }
-
-    .disc-btn {
-      flex: 0 0 auto;
-      padding: 7px 10px;
-      background: var(--btn-active);
-      color: var(--primary-pink);
-      border: none;
-      border-radius: 10px;
+    .discount-title {
       font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
+      color: #ff69b4;
+      font-weight: bold;
+      margin-bottom: 6px;
+      text-align: center;
     }
 
-    .disc-btn.hot {
-      background: var(--highlight-pink);
-      color: #ffffff;
-      box-shadow: 0 2px 6px rgba(255, 104, 132, 0.3);
-    }
-
-    /* ボタンエリア */
-    .buttons-grid {
+    .discount-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 12px;
     }
 
-    button {
-      padding: 14px 0;
-      font-size: 1.2rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 18px;
-      background: var(--btn-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 10px var(--shadow);
+    .btn-discount {
+      background-color: #fff0f5;
+      color: #ff1493;
+      border: 1.5px solid #ffb6c1;
+      padding: 6px 0;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
       cursor: pointer;
-      transition: transform 0.08s cubic-bezier(0.2, 0, 0, 1), background-color 0.1s ease;
+      transition: all 0.1s;
     }
 
-    button:active {
-      transform: scale(0.92) translateY(2px);
-      box-shadow: 0 2px 4px var(--shadow);
-    }
-
-    .btn-op { background: var(--btn-op-bg); color: var(--btn-op-text); }
-    .btn-tax { background: var(--btn-active); color: var(--text-main); font-size: 0.85rem; font-weight: 700; }
-    .btn-clear { background: #ffe5d9; color: #d90429; }
-    .btn-equal { background: var(--primary-pink); color: #ffffff; grid-column: span 2; }
-
-    .toast {
-      position: fixed;
-      bottom: 25px;
-      background: rgba(0, 0, 0, 0.75);
+    .btn-discount:active {
+      background-color: #ffb6c1;
       color: #fff;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-      z-index: 1000;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button.btn {
+      height: 52px;
+      border-radius: 16px;
+      border: none;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.05s, background-color 0.1s;
+    }
+
+    button.btn:active {
+      transform: scale(0.95);
+    }
+
+    .num {
+      background-color: #ffffff;
+      color: #555555;
+      border: 1px solid #ffe4e1;
+    }
+
+    .op {
+      background-color: #ffb6c1;
+      color: #ffffff;
+    }
+
+    .clear {
+      background-color: #ff6b81;
+      color: #ffffff;
+    }
+
+    .equal {
+      background-color: #ff1493;
+      color: #ffffff;
+    }
+
+    .history-btn {
+      background-color: #fff0f5;
+      color: #ff69b4;
+      border: 1.5px solid #ffb6c1;
+      grid-column: span 2;
+    }
+
+    /* 履歴ポップアップ */
+    .modal {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 20px;
+      z-index: 10;
+      box-sizing: border-box;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      color: #ff69b4;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ffe4e1;
+      padding-bottom: 8px;
+    }
+
+    .modal-close {
+      background: #ffb6c1;
+      color: white;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .history-list {
+      list-style: none;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .history-item {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ffd1dc;
+      text-align: right;
+      color: #444;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- 起動時の演出 -->
-  <div class="splash-overlay" id="splash">
-    <div class="splash-heart">💖</div>
-    <div class="splash-text" id="splash-title-text">〇〇ちゃん専用電卓</div>
-  </div>
+  <div class="calculator">
+    <div class="header-title">🎀🧸YUKINO🧸🎀</div>
 
-  <div class="calc-container">
-    <!-- ヘッダー -->
-    <div class="header">
-      <div class="title-box" onclick="changeName()">
-        🎀 <span id="custom-name">〇〇ちゃん専用</span> Calculator
-      </div>
-      <div class="controls">
-        <button class="icon-btn" onclick="toggleSound()" id="sound-btn" title="効果音切替">🔊</button>
-        <button class="icon-btn" onclick="toggleTheme()" id="theme-btn" title="モード切替">🌙</button>
-      </div>
+    <div class="display-container">
+      <div class="datetime" id="datetime">----/--/-- (-) --:--:--</div>
+      <input type="text" class="screen" id="screen" value="0" readonly>
     </div>
 
-    <!-- ディスプレイ -->
-    <div class="display-box">
-      <div id="sub-display" class="sub-display"></div>
-      <div class="main-display-row">
-        <button class="copy-btn" onclick="copyResult()">コピー</button>
-        <input type="text" id="display" readonly value="0">
+    <div class="discount-title">💖 割引・OFFボタン 💖</div>
+    <div class="discount-grid">
+      <button class="btn-discount" onclick="applyDiscount(0.1)">1割/10%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.2)">2割/20%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.3)">3割/30%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.4)">4割/40%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.5)">5割/50%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.6)">6割/60%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.7)">7割/70%</button>
+      <button class="btn-discount" onclick="applyDiscount(0.8)">8割/80%</button>
+    </div>
+
+    <div class="keypad">
+      <button class="btn clear" onclick="clearScreen()">C</button>
+      <button class="btn history-btn" onclick="toggleHistory()">📜 履歴 (10件)</button>
+      <button class="btn op" onclick="appendOp('÷')">÷</button>
+
+      <button class="btn num" onclick="appendNum('7')">7</button>
+      <button class="btn num" onclick="appendNum('8')">8</button>
+      <button class="btn num" onclick="appendNum('9')">9</button>
+      <button class="btn op" onclick="appendOp('×')">×</button>
+
+      <button class="btn num" onclick="appendNum('4')">4</button>
+      <button class="btn num" onclick="appendNum('5')">5</button>
+      <button class="btn num" onclick="appendNum('6')">6</button>
+      <button class="btn op" onclick="appendOp('-')">-</button>
+
+      <button class="btn num" onclick="appendNum('1')">1</button>
+      <button class="btn num" onclick="appendNum('2')">2</button>
+      <button class="btn num" onclick="appendNum('3')">3</button>
+      <button class="btn op" onclick="appendOp('+')">+</button>
+
+      <button class="btn num" onclick="appendNum('0')">0</button>
+      <button class="btn num" onclick="appendNum('00')">00</button>
+      <button class="btn num" onclick="appendNum('.')">.</button>
+      <button class="btn equal" onclick="calculate()">=</button>
+    </div>
+
+    <!-- 履歴モーダル -->
+    <div class="modal" id="historyModal">
+      <div class="modal-header">
+        <span>📜 計算履歴 (最新10件)</span>
+        <button class="modal-close" onclick="toggleHistory()">閉じる</button>
       </div>
-    </div>
-
-    <!-- 割引＆固定値引きエリア -->
-    <div class="section-title">✨ ワンタップ割引・値引き</div>
-    <div class="discount-scroll">
-      <button class="disc-btn" onclick="applyDiscount(10)">10%OFF</button>
-      <button class="disc-btn" onclick="applyDiscount(20)">20%OFF</button>
-      <button class="disc-btn hot" onclick="applyDiscount(30)">30%OFF★</button>
-      <button class="disc-btn" onclick="applyDiscount(40)">40%OFF</button>
-      <button class="disc-btn hot" onclick="applyDiscount(50)">半額★</button>
-      <button class="disc-btn" onclick="applyDiscount(60)">60%OFF</button>
-      <button class="disc-btn hot" onclick="applyDiscount(70)">70%OFF★</button>
-      <button class="disc-btn" onclick="applyDiscount(80)">80%OFF</button>
-      <button class="disc-btn" onclick="applyDiscount(90)">90%OFF</button>
-      <button class="disc-btn" onclick="applyFlatDiscount(100)" style="background:#e8f4f8; color:#2a9d8f;">-100円</button>
-      <button class="disc-btn" onclick="applyFlatDiscount(300)" style="background:#e8f4f8; color:#2a9d8f;">-300円</button>
-      <button class="disc-btn" onclick="applyFlatDiscount(500)" style="background:#e8f4f8; color:#2a9d8f;">-500円</button>
-      <button class="disc-btn" onclick="applyFlatDiscount(1000)" style="background:#e8f4f8; color:#2a9d8f;">-1000円</button>
-    </div>
-
-    <!-- 数字・演算キー -->
-    <div class="buttons-grid">
-      <button class="btn-clear" onclick="clearAll()">C</button>
-      <button class="btn-tax" onclick="calcTax(1.08)">税込8%</button>
-      <button class="btn-tax" onclick="calcTax(1.10)">税込10%</button>
-      <button class="btn-op" onclick="appendOp('/')">÷</button>
-
-      <button onclick="appendNum('7')">7</button>
-      <button onclick="appendNum('8')">8</button>
-      <button onclick="appendNum('9')">9</button>
-      <button class="btn-op" onclick="appendOp('*')">×</button>
-
-      <button onclick="appendNum('4')">4</button>
-      <button onclick="appendNum('5')">5</button>
-      <button onclick="appendNum('6')">6</button>
-      <button class="btn-op" onclick="appendOp('-')">-</button>
-
-      <button onclick="appendNum('1')">1</button>
-      <button onclick="appendNum('2')">2</button>
-      <button onclick="appendNum('3')">3</button>
-      <button class="btn-op" onclick="appendOp('+')">+</button>
-
-      <button onclick="appendNum('0')">0</button>
-      <button onclick="appendNum('.')">.</button>
-      <button class="btn-equal" onclick="calculate()">=</button>
+      <ul class="history-list" id="historyList">
+        <li class="history-item">履歴はありません</li>
+      </ul>
     </div>
   </div>
-
-  <div id="toast" class="toast">コピーしました！</div>
 
   <script>
-    // 起動時の花びらエフェクト生成
-    function createPetals() {
-      const symbols = ['🌸', '💖', '✨', '🌷'];
-      for (let i = 0; i < 12; i++) {
-        let span = document.createElement('div');
-        span.className = 'petal';
-        span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-        span.style.left = Math.random() * 100 + 'vw';
-        span.style.animationDuration = (Math.random() * 1.5 + 1.2) + 's';
-        span.style.animationDelay = (Math.random() * 0.5) + 's';
-        document.body.appendChild(span);
-        setTimeout(() => span.remove(), 2500);
-      }
-    }
-    createPetals();
+    // 時計機能
+    function updateClock() {
+      const now = new Date();
+      const days = ['日', '月', '火', '水', '木', '金', '土'];
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const date = String(now.getDate()).padStart(2, '0');
+      const day = days[now.getDay()];
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
 
-    // 音声生成 (Web Audio API)
-    let soundEnabled = true;
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-    function playPopSound() {
-      if (!soundEnabled) return;
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
-      
-      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-      
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.05);
+      document.getElementById('datetime').innerText = `${year}/${month}/${date} (${day}) ${hours}:${minutes}:${seconds}`;
     }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      document.getElementById('sound-btn').innerText = soundEnabled ? '🔊' : '🔇';
-    }
+    // 電卓機能
+    let currentInput = "0";
+    let expression = "";
+    let isNewCalculation = false;
+    let history = [];
 
-    // テーマ切り替え
-    function toggleTheme() {
-      playPopSound();
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
-      document.getElementById('theme-btn').innerText = isDark ? '☀️' : '🌙';
-    }
+    const screen = document.getElementById('screen');
 
-    // 名前設定
-    function changeName() {
-      let newName = prompt("お名前やニックネームを入力してください🌸", localStorage.getItem('calc-name-raw') || "〇〇ちゃん");
-      if (newName) {
-        localStorage.setItem('calc-name-raw', newName);
-        updateNameDisplay(newName);
-      }
+    function updateScreen(val) {
+      screen.value = val;
     }
-    function updateNameDisplay(name) {
-      document.getElementById('custom-name').innerText = name + "専用";
-      document.getElementById('splash-title-text').innerText = name + "専用電卓";
-    }
-    const savedName = localStorage.getItem('calc-name-raw');
-    if (savedName) updateNameDisplay(savedName);
-
-    // 電卓基本ロジック
-    const display = document.getElementById('display');
-    const subDisplay = document.getElementById('sub-display');
-    let isNewInput = true;
 
     function appendNum(num) {
-      playPopSound();
-      if (display.value === '0' || isNewInput || display.value === 'エラー') {
-        display.value = num;
-        isNewInput = false;
+      if (currentInput === "0" || isNewCalculation) {
+        currentInput = num;
+        isNewCalculation = false;
       } else {
-        display.value += num;
+        currentInput += num;
       }
+      updateScreen(currentInput);
     }
 
     function appendOp(op) {
-      playPopSound();
-      let lastChar = display.value.slice(-1);
-      if (['+','-','*','/'].includes(lastChar)) {
-        display.value = display.value.slice(0, -1) + op;
-      } else {
-        display.value += op;
-      }
-      isNewInput = false;
+      if (isNewCalculation) isNewCalculation = false;
+      expression += currentInput + " " + op + " ";
+      currentInput = "0";
     }
 
-    function clearAll() {
-      playPopSound();
-      display.value = '0';
-      subDisplay.innerText = '';
-      isNewInput = true;
+    function clearScreen() {
+      currentInput = "0";
+      expression = "";
+      updateScreen("0");
     }
 
     function calculate() {
-      playPopSound();
-      try {
-        let result = eval(display.value);
-        if (!isFinite(result)) {
-          display.value = 'エラー';
-        } else {
-          display.value = Math.floor(result);
-          subDisplay.innerText = '';
-        }
-      } catch (e) {
-        display.value = 'エラー';
-      }
-      isNewInput = true;
-    }
+      if (!expression && !currentInput) return;
+      let fullExpr = expression + currentInput;
+      let evalExpr = fullExpr.replace(/×/g, '*').replace(/÷/g, '/');
 
-    function applyDiscount(percent) {
-      playPopSound();
       try {
-        let current = parseFloat(eval(display.value));
-        if (!isNaN(current) && current > 0) {
-          let discounted = Math.floor(current * (1 - percent / 100));
-          subDisplay.innerText = current.toLocaleString() + '円の' + (percent === 50 ? '半額' : percent + '%OFF');
-          display.value = discounted;
-          isNewInput = true;
-        }
+        let result = eval(evalExpr);
+        result = Math.round(result * 100000000) / 100000000; // 精度調整
+        addHistory(`${fullExpr} = ${result}`);
+        currentInput = String(result);
+        expression = "";
+        isNewCalculation = true;
+        updateScreen(currentInput);
       } catch (e) {
-        display.value = 'エラー';
+        updateScreen("Error");
+        currentInput = "0";
+        expression = "";
       }
     }
 
-    function applyFlatDiscount(yen) {
-      playPopSound();
-      try {
-        let current = parseFloat(eval(display.value));
-        if (!isNaN(current) && current > 0) {
-          let discounted = Math.max(0, Math.floor(current - yen));
-          subDisplay.innerText = current.toLocaleString() + '円から ' + yen + '円引き';
-          display.value = discounted;
-          isNewInput = true;
-        }
-      } catch (e) {
-        display.value = 'エラー';
+    // 割引・OFF計算
+    function applyDiscount(rate) {
+      let val = parseFloat(currentInput);
+      if (isNaN(val) || val === 0) return;
+
+      let discounted = val * (1 - rate);
+      discounted = Math.round(discounted); // 四捨五入
+      let percentText = Math.round(rate * 100) + "%OFF";
+
+      addHistory(`${val} の ${percentText} = ${discounted}`);
+      currentInput = String(discounted);
+      isNewCalculation = true;
+      updateScreen(currentInput);
+    }
+
+    // 履歴管理
+    function addHistory(item) {
+      history.unshift(item);
+      if (history.length > 10) history.pop();
+      renderHistory();
+    }
+
+    function renderHistory() {
+      const list = document.getElementById('historyList');
+      if (history.length === 0) {
+        list.innerHTML = '<li class="history-item">履歴はありません</li>';
+        return;
       }
+      list.innerHTML = history.map(h => `<li class="history-item">${h}</li>`).join('');
     }
 
-    function calcTax(rate) {
-      playPopSound();
-      try {
-        let current = parseFloat(eval(display.value));
-        if (!isNaN(current) && current > 0) {
-          let result = Math.floor(current * rate);
-          let taxStr = rate === 1.08 ? '税込8%' : '税込10%';
-          subDisplay.innerText = current.toLocaleString() + '円 (' + taxStr + ')';
-          display.value = result;
-          isNewInput = true;
-        }
-      } catch (e) {
-        display.value = 'エラー';
-      }
+    function toggleHistory() {
+      const modal = document.getElementById('historyModal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
-
-    function copyResult() {
-      playPopSound();
-      navigator.clipboard.writeText(display.value).then(() => {
-        let toast = document.getElementById('toast');
-        toast.style.opacity = '1';
-        setTimeout(() => { toast.style.opacity = '0'; }, 1500);
-      });
-    }
-
-    // PWA Manifest設定
-    const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="30" fill="#f7d6e0"/><text x="50" y="65" font-size="50" text-anchor="middle">🎀</text></svg>`;
-    const iconBlob = new Blob([svgIcon], {type: 'image/svg+xml'});
-    const iconUrl = URL.createObjectURL(iconBlob);
-
-    const manifestData = {
-      "name": "専用割引電卓",
-      "short_name": "電卓",
-      "start_url": "./",
-      "display": "standalone",
-      "background_color": "#f7d6e0",
-      "theme_color": "#f7d6e0",
-      "icons": [{
-        "src": iconUrl,
-        "sizes": "192x192",
-        "type": "image/svg+xml"
-      }]
-    };
-    const stringManifest = JSON.stringify(manifestData);
-    const blob = new Blob([stringManifest], {type: 'application/json'});
-    document.getElementById('my-manifest').setAttribute('href', URL.createObjectURL(blob));
   </script>
 </body>
 </html>
