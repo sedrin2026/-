@@ -52,7 +52,7 @@
     }
 
     .calculator {
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 32px;
@@ -67,9 +67,25 @@
       flex-direction: column;
       justify-content: space-between;
       z-index: 1;
+      overflow: hidden; /* 薄いハイビスカスのハミ出しを防止 */
     }
 
-    /* ヘッダー＆重厚感のあるリアルゴールドYUKINOロゴ */
+    /* 電卓本体に大きくうっすら配置する実写ハイビスカス */
+    .calculator::after {
+      content: "";
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 85%;
+      height: 60%;
+      background: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?q=80&w=800&auto=format&fit=crop') no-repeat center center;
+      background-size: contain;
+      opacity: 0.18; /* うっすら見せるための透明度 */
+      pointer-events: none; /* ボタン操作を邪魔しない */
+      z-index: 0;
+    }
+
+    /* ヘッダー＆ハッキリ見えるリアルゴールドYUKINOロゴ */
     .header-title {
       text-align: center;
       font-size: 1.1rem;
@@ -77,49 +93,51 @@
       color: #004d61;
       margin-bottom: 4px;
       letter-spacing: 1px;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      z-index: 2;
     }
     
     .header-title .name-stylish {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      font-weight: normal;
-      letter-spacing: 2px;
-      margin: 0 6px;
-      line-height: 1.1;
-      /* 華やかで立体的な黄金のグラデーション */
-      background: linear-gradient(135deg, #ffe082 0%, #d4af37 25%, #fffdd0 45%, #aa771c 70%, #fbf5b7 100%);
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin: 0 4px;
+      line-height: 1;
+      background: linear-gradient(180deg, #ffd700 0%, #b8860b 45%, #d4af37 70%, #8b6508 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      /* 黄金の輝きを引き立たせる影 */
-      filter: drop-shadow(1px 2px 2px rgba(50, 30, 0, 0.5));
+      filter: drop-shadow(0px 2px 3px rgba(80, 50, 0, 0.6))
+              drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.8));
     }
 
-    /* 「透き通る沖縄の海」の写真背景を採用したディスプレイ */
+    /* 明るくなったディスプレイ背景 */
     .display-container {
-      background: linear-gradient(rgba(0, 70, 90, 0.4), rgba(0, 30, 50, 0.65)), 
-                  url('https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=800&auto=format&fit=crop') no-repeat center center;
+      /* 明るめのエメラルドグリーンリゾート写真に変更 */
+      background: linear-gradient(rgba(0, 80, 100, 0.15), rgba(0, 40, 60, 0.35)), 
+                  url('https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=800&auto=format&fit=crop') no-repeat center center;
       background-size: cover;
-      border: 2px solid rgba(0, 229, 255, 0.6);
+      border: 2px solid rgba(0, 229, 255, 0.7);
       border-radius: 16px;
       padding: 8px 12px;
       margin-bottom: 8px;
-      box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 180, 219, 0.3);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 180, 219, 0.4);
       position: relative;
       overflow: hidden;
+      z-index: 2;
     }
 
     .datetime {
       font-size: 0.75rem;
-      color: #b2ebf2;
+      color: #e0f7fa;
       font-weight: bold;
       text-align: right;
       margin-bottom: 2px;
       letter-spacing: 0.5px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
     }
 
     .screen {
@@ -133,7 +151,8 @@
       font-weight: bold;
       color: #ffffff;
       word-wrap: break-word;
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
+      /* 明るい背景でも文字がはっきり読める影 */
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
     }
 
     /* 割引スライドメニュー (ハイビスカス・サンセット調) */
@@ -151,6 +170,8 @@
       box-shadow: 0 4px 10px rgba(255, 94, 98, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6);
       transition: all 0.1s;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
     }
 
     .discount-toggle-btn:active {
@@ -163,6 +184,8 @@
       overflow: hidden;
       transition: max-height 0.25s ease-out;
       margin-bottom: 4px;
+      position: relative;
+      z-index: 2;
     }
 
     .discount-wrapper.open {
@@ -200,6 +223,8 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
+      position: relative;
+      z-index: 2;
     }
 
     button.btn {
@@ -212,9 +237,9 @@
       transition: all 0.1s;
     }
 
-    /* 数字ボタン (ピュアホワイト・ガラス風) */
+    /* 数字ボタン (半透明ピュアホワイト・ガラス風) */
     .num {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.88);
       color: #1a365d;
       border: 1px solid rgba(255, 255, 255, 0.9);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 1);
@@ -255,7 +280,7 @@
 
     /* メモリーボタン */
     .mem {
-      background-color: rgba(224, 242, 241, 0.85);
+      background-color: rgba(224, 242, 241, 0.88);
       color: #00695c;
       font-size: 0.9rem !important;
       border: 1px solid rgba(255, 255, 255, 0.6);
@@ -281,7 +306,7 @@
 
     /* 履歴ボタン */
     .history-btn {
-      background-color: rgba(224, 242, 241, 0.85);
+      background-color: rgba(224, 242, 241, 0.88);
       color: #00695c;
       border: 1px solid rgba(255, 255, 255, 0.6);
       font-size: 0.8rem !important;
