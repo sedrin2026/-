@@ -273,15 +273,15 @@
     .history-list { list-style: none; }
     .history-item { padding: 6px 0; border-bottom: 1px dashed #b2dfdb; text-align: right; color: #263238; font-size: 0.8rem; }
 
-    .memo-form { display: flex; gap: 4px; margin-bottom: 6px; }
-    .memo-input-name { flex: 2; padding: 4px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.75rem; outline: none; }
-    .memo-input-price { flex: 1.5; padding: 4px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.75rem; outline: none; text-align: right; }
-    .memo-add-btn { background: #0083b0; color: white; border: none; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; }
+    .memo-form { display: flex; gap: 4px; margin-bottom: 6px; width: 100%; }
+    .memo-input-name { flex: 2; min-width: 0; padding: 4px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.75rem; outline: none; }
+    .memo-input-price { flex: 1.2; min-width: 0; padding: 4px; border: 1px solid #b2dfdb; border-radius: 6px; font-size: 0.75rem; outline: none; text-align: right; }
+    .memo-add-btn { background: #0083b0; color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; flex-shrink: 0; }
     .memo-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
     .memo-table th { border-bottom: 2px solid #b2dfdb; padding: 3px; color: #00695c; text-align: left; }
     .memo-table td { border-bottom: 1px solid #e0f2f1; padding: 4px 3px; color: #37474f; }
     .memo-del-btn { color: #e53935; cursor: pointer; border: none; background: none; font-weight: bold; }
-    .memo-total { margin-top: 6px; padding-top: 4px; border-top: 2px solid #00695c; font-weight: bold; color: #004d40; display: flex; justifyContent: space-between; font-size: 0.8rem; }
+    .memo-total { margin-top: 6px; padding-top: 6px; border-top: 2px solid #00695c; font-weight: bold; color: #004d40; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; width: 100%; }
   </style>
 </head>
 <body>
