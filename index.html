@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🌺🌴YUKINO🌴🌺 の沖縄リゾート電卓</title>
+  <title>🌺🌴YUKINO🌴🌺 のリアル沖縄リゾート電卓</title>
   <!-- おしゃれなフォント（Pacifico）の読み込み -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,9 +28,10 @@
       touch-action: manipulation;
     }
 
-    /* 沖縄の美しい海（エメラルド〜ディープブルー）をイメージした背景 */
+    /* 圧倒的なリアル感を放つ沖縄の海の写真背景 ＋ 贅沢なレイヤー */
     body {
-      background: linear-gradient(135deg, #007791 0%, #00a8b5 40%, #00344d 100%);
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -38,29 +39,29 @@
       position: relative;
     }
 
-    /* 波や砂浜のきらめきを表現する淡い光の演出 */
+    /* 南国の太陽の光や空気感を演出するシネマティックなフィルター */
     body::before {
       content: "";
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0) 60%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.3) 0%, rgba(0, 40, 70, 0.4) 100%);
       pointer-events: none;
     }
 
     .calculator {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 28px;
-      padding: 16px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 32px;
+      padding: 18px;
       width: 100%;
       max-width: 380px;
       max-height: 98vh;
-      box-shadow: 0 20px 40px rgba(0, 40, 60, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-      border: 2px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 25px 50px rgba(0, 30, 50, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.8);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -73,10 +74,10 @@
       text-align: center;
       font-size: 1.1rem;
       font-weight: bold;
-      color: #00667a;
+      color: #004d61;
       margin-bottom: 8px;
       letter-spacing: 1px;
-      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
     }
     
     .header-title .name-stylish {
@@ -89,22 +90,22 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       /* 立体的な輝きの影 */
-      filter: drop-shadow(1px 1px 1px rgba(100, 70, 0, 0.3));
+      filter: drop-shadow(1px 1px 1px rgba(80, 50, 0, 0.4));
     }
 
-    /* ラグジュアリー・リゾートなディスプレイ */
+    /* ラグジュアリー・ディープオーシャンディスプレイ */
     .display-container {
-      background-color: #0b252b;
-      border: 2px solid #205460;
+      background-color: #071e26;
+      border: 2px solid rgba(0, 168, 181, 0.5);
       border-radius: 16px;
       padding: 8px 12px;
       margin-bottom: 8px;
-      box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 168, 181, 0.3);
+      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 168, 181, 0.25);
     }
 
     .datetime {
       font-size: 0.75rem;
-      color: #70b3be;
+      color: #64b5f6;
       font-weight: bold;
       text-align: right;
       margin-bottom: 2px;
@@ -120,31 +121,31 @@
       text-align: right;
       font-size: 2.2rem;
       font-weight: bold;
-      color: #e6ffff;
+      color: #e0f7fa;
       word-wrap: break-word;
-      text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
     }
 
-    /* 割引スライドメニュー (サンゴ礁・リゾート調) */
+    /* 割引スライドメニュー (ハイビスカス・サンセット調) */
     .discount-toggle-btn {
       width: 100%;
-      background: linear-gradient(135deg, #ff7e67, #e85a4f);
+      background: linear-gradient(135deg, #ff5e62, #ff9966);
       color: #ffffff;
-      border: 1px solid #ff9a8a;
+      border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: 12px;
       padding: 6px;
       font-size: 0.85rem;
       font-weight: bold;
       cursor: pointer;
       margin-bottom: 6px;
-      box-shadow: 0 3px 0 #b53a2f;
+      box-shadow: 0 4px 10px rgba(255, 94, 98, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6);
       transition: all 0.1s;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .discount-toggle-btn:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #b53a2f;
+      box-shadow: 0 1px 3px rgba(255, 94, 98, 0.4);
     }
 
     .discount-wrapper {
@@ -166,26 +167,25 @@
     }
 
     .btn-discount {
-      background-color: #ffffff;
-      color: #e85a4f;
-      border: 1.5px solid #ffab9d;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #e64a19;
+      border: 1px solid rgba(255, 112, 67, 0.5);
       padding: 5px 0;
       border-radius: 8px;
       font-size: 0.75rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 2px 0 #f0d0cc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: all 0.1s;
     }
 
     .btn-discount:active {
       transform: translateY(2px);
-      box-shadow: 0 0 0 #f0d0cc;
-      background-color: #ffab9d;
+      background-color: #ff7043;
       color: #fff;
     }
 
-    /* キーパッド & ぷっくり立体ボタン */
+    /* キーパッド & ガラス質感ボタン */
     .keypad {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -202,85 +202,83 @@
       transition: all 0.1s;
     }
 
-    /* 数字ボタン (サンドホワイト＆上品な影) */
+    /* 数字ボタン (ピュアホワイト・ガラス風) */
     .num {
-      background-color: #fcfbf9;
-      color: #2c3e50;
-      border: 1px solid #e0ded9;
-      box-shadow: 0 3px 0 #d4d0c7;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #1a365d;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 1);
     }
     .num:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #d4d0c7;
-      background-color: #f4f1ea;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      background-color: rgba(240, 248, 255, 0.95);
     }
 
-    /* 演算子ボタン (エメラルドオーシャンカラー) */
+    /* 演算子ボタン (ディープ・ケラマブルー) */
     .op {
-      background-color: #009688;
+      background: linear-gradient(135deg, #0083b0, #00b4db);
       color: #ffffff;
       font-size: 1.6rem !important;
-      border: 1px solid #26a69a;
-      box-shadow: 0 3px 0 #00695c;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 3px 8px rgba(0, 131, 176, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
     .op:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #00695c;
+      box-shadow: 0 1px 3px rgba(0, 131, 176, 0.4);
     }
 
-    /* イコールボタン (ハイビスカス・コーラルレッド) */
+    /* イコールボタン (ハイビスカス・レッド) */
     .equal {
-      background: linear-gradient(135deg, #ff5252, #e53935);
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
       color: #ffffff;
       font-size: 1.8rem !important;
-      border: 1px solid #ff8a80;
-      box-shadow: 0 3px 0 #b71c1c;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 3px 8px rgba(255, 65, 108, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
     .equal:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #b71c1c;
+      box-shadow: 0 1px 3px rgba(255, 65, 108, 0.4);
     }
 
     /* メモリーボタン */
     .mem {
-      background-color: #e0f2f1;
-      color: #00796b;
+      background-color: rgba(224, 242, 241, 0.85);
+      color: #00695c;
       font-size: 0.9rem !important;
-      border: 1px solid #b2dfdb;
-      box-shadow: 0 3px 0 #80cbc4;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .mem:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #80cbc4;
     }
 
-    /* クリア・削除ボタン (サンセットオレンジ) */
+    /* クリア・削除ボタン (サンセット・オレンジ) */
     .clear {
-      background-color: #ff7043;
+      background: linear-gradient(135deg, #f7971e, #ffd200);
       color: #ffffff;
       font-size: 1.3rem !important;
-      border: 1px solid #ff8a65;
-      box-shadow: 0 3px 0 #d84315;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 3px 8px rgba(247, 151, 30, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
     }
     .clear:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #d84315;
+      box-shadow: 0 1px 3px rgba(247, 151, 30, 0.4);
     }
 
     /* 履歴ボタン */
     .history-btn {
-      background-color: #e0f2f1;
-      color: #00796b;
-      border: 1px solid #b2dfdb;
+      background-color: rgba(224, 242, 241, 0.85);
+      color: #00695c;
+      border: 1px solid rgba(255, 255, 255, 0.6);
       font-size: 0.8rem !important;
-      box-shadow: 0 3px 0 #80cbc4;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .history-btn:active {
       transform: translateY(2px);
-      box-shadow: 0 1px 0 #80cbc4;
     }
 
     /* 履歴モーダル */
@@ -291,10 +289,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(8px);
-      border-radius: 24px;
-      padding: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 32px;
+      padding: 18px;
       z-index: 10;
       box-sizing: border-box;
       flex-direction: column;
@@ -305,14 +303,14 @@
       justify-content: space-between;
       align-items: center;
       font-weight: bold;
-      color: #00796b;
+      color: #00695c;
       margin-bottom: 12px;
-      border-bottom: 2px solid #b2dfdb;
+      border-bottom: 2px solid #80cbc4;
       padding-bottom: 6px;
     }
 
     .modal-close {
-      background: #ff7043;
+      background: #ff416c;
       color: white;
       border: none;
       padding: 4px 12px;
@@ -330,7 +328,7 @@
       padding: 8px 0;
       border-bottom: 1px dashed #b2dfdb;
       text-align: right;
-      color: #37474f;
+      color: #263238;
       font-size: 0.9rem;
     }
   </style>
@@ -537,7 +535,7 @@
     function renderHistory() {
       const list = document.getElementById('historyList');
       if (history.length === 0) {
-        list.innerHTML = '<li class="history-item">履歴はありません</li>';
+        list.innerHTML = '<li class="history-item">History is empty</li>';
         return;
       }
       list.innerHTML = history.map(h => `<li class="history-item">${h}</li>`).join('');
