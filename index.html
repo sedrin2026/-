@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🌺🌴YUKINO🌴🌺 のリアル沖縄リゾート電卓</title>
-  <!-- おしゃれなフォント（Pacifico）の読み込み -->
+  <!-- 優雅でクラシカルな筆記体フォント（Great Vibes）の読み込み -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -28,7 +28,7 @@
       touch-action: manipulation;
     }
 
-    /* 圧倒的なリアル感を放つ沖縄の海の写真背景 ＋ 贅沢なレイヤー */
+    /* 全体の背景：沖縄の美しい海岸・砂浜の写真 */
     body {
       background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
       background-size: cover;
@@ -39,7 +39,7 @@
       position: relative;
     }
 
-    /* 南国の太陽の光や空気感を演出するシネマティックなフィルター */
+    /* 南国の空気感を演出するフィルター */
     body::before {
       content: "";
       position: absolute;
@@ -47,12 +47,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.3) 0%, rgba(0, 40, 70, 0.4) 100%);
+      background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.25) 0%, rgba(0, 40, 70, 0.35) 100%);
       pointer-events: none;
     }
 
     .calculator {
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 32px;
@@ -69,47 +69,57 @@
       z-index: 1;
     }
 
-    /* ヘッダー＆ゴールドに輝くYUKINOロゴ */
+    /* ヘッダー＆重厚感のあるリアルゴールドYUKINOロゴ */
     .header-title {
       text-align: center;
       font-size: 1.1rem;
       font-weight: bold;
       color: #004d61;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       letter-spacing: 1px;
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .header-title .name-stylish {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.6rem;
-      letter-spacing: 1.5px;
-      margin: 0 4px;
-      /* 黄金のゴールドグラデーション */
-      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      font-weight: normal;
+      letter-spacing: 2px;
+      margin: 0 6px;
+      line-height: 1.1;
+      /* 華やかで立体的な黄金のグラデーション */
+      background: linear-gradient(135deg, #ffe082 0%, #d4af37 25%, #fffdd0 45%, #aa771c 70%, #fbf5b7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      /* 立体的な輝きの影 */
-      filter: drop-shadow(1px 1px 1px rgba(80, 50, 0, 0.4));
+      /* 黄金の輝きを引き立たせる影 */
+      filter: drop-shadow(1px 2px 2px rgba(50, 30, 0, 0.5));
     }
 
-    /* ラグジュアリー・ディープオーシャンディスプレイ */
+    /* 「透き通る沖縄の海」の写真背景を採用したディスプレイ */
     .display-container {
-      background-color: #071e26;
-      border: 2px solid rgba(0, 168, 181, 0.5);
+      background: linear-gradient(rgba(0, 70, 90, 0.4), rgba(0, 30, 50, 0.65)), 
+                  url('https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=800&auto=format&fit=crop') no-repeat center center;
+      background-size: cover;
+      border: 2px solid rgba(0, 229, 255, 0.6);
       border-radius: 16px;
       padding: 8px 12px;
       margin-bottom: 8px;
-      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 168, 181, 0.25);
+      box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 180, 219, 0.3);
+      position: relative;
+      overflow: hidden;
     }
 
     .datetime {
       font-size: 0.75rem;
-      color: #64b5f6;
+      color: #b2ebf2;
       font-weight: bold;
       text-align: right;
       margin-bottom: 2px;
       letter-spacing: 0.5px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     }
 
     .screen {
@@ -121,9 +131,9 @@
       text-align: right;
       font-size: 2.2rem;
       font-weight: bold;
-      color: #e0f7fa;
+      color: #ffffff;
       word-wrap: break-word;
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
     }
 
     /* 割引スライドメニュー (ハイビスカス・サンセット調) */
@@ -336,7 +346,7 @@
 <body>
 
   <div class="calculator">
-    <div class="header-title">🌺🌴<span class="name-stylish">YUKINO</span>🌴🌺</div>
+    <div class="header-title">🌺🌴<span class="name-stylish">Yukino</span>🌴🌺</div>
 
     <div class="display-container">
       <div class="datetime" id="datetime">----/--/-- (-) --:--:--</div>
@@ -404,7 +414,7 @@
         <button class="modal-close" onclick="toggleHistory()">閉じる</button>
       </div>
       <ul class="history-list" id="historyList">
-        <li class="history-item">履歴はありません</li>
+        <li class="history-item">History is empty</li>
       </ul>
     </div>
   </div>
@@ -509,12 +519,12 @@
       let val = parseFloat(currentInput);
       if (isNaN(val) || val === 0) return;
 
-      let discounted = val * (1 - rate);
-      discounted = Math.round(discounted);
+      let discountedCalc = val * (1 - rate);
+      discountedCalc = Math.round(discountedCalc);
       let percentText = Math.round(rate * 100) + "%OFF";
 
-      addHistory(`${val} の ${percentText} = ${discounted}`);
-      currentInput = String(discounted);
+      addHistory(`${val} の ${percentText} = ${discountedCalc}`);
+      currentInput = String(discountedCalc);
       isNewCalculation = true;
       updateScreen(currentInput);
     }
